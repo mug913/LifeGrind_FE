@@ -15,9 +15,14 @@ export default class Registration extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.signUp(this.state)
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>Username :</label>
                 <input name="username" value={this.state.username} onChange={this.handleChange} />
                 <label>Password :</label>

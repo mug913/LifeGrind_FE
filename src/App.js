@@ -9,7 +9,7 @@ class App extends Component {
   }
 
   signUp = (user) => {
-    fetch('http://localhost/users', {
+    fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -30,9 +30,10 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Registration />
+        {this.state.user.username ? <h2>Welcome {this.state.user.username}</h2> : <Registration signUp={this.signUp} />}
       </div>
     );
   }
 }
+
 export default App;

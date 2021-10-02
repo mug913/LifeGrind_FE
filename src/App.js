@@ -6,7 +6,8 @@ import SignIn from './components/SignIn';
 class App extends Component {
 
   state = {
-    user: {}
+    user: {},
+    error: ""
   }
 
   signUp = (user) => {
@@ -42,6 +43,18 @@ class App extends Component {
         }
       })
     })
+    .then(res => res.json())
+    .then(result => {
+      if (result.token){
+        localStorage.setItem('token', result.token)
+        this.setState({ user: result.user })
+       }
+      else {
+        this.setState({
+          error: result.error
+        })
+      }  
+    })
   }
 
   render(){
@@ -49,7 +62,7 @@ class App extends Component {
       <div className="App">
         {this.state.user.username ? <h2>Welcome {this.state.user.username}</h2> : (
         <>
-        <SignIn signIn={this.signIn} />
+        <SignIn signIn={this.signIn} error={this.state.error}/>
         <Registration signUp={this.signUp} />}
         </>)
         }

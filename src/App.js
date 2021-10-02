@@ -10,6 +10,26 @@ class App extends Component {
     error: ""
   }
 
+  componentDidMount(){
+    let token = localStorage.getItem('token')
+    if(token){
+      fetch('http://localhost:3000/profile', {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(result => {
+        if(result.id){
+          this.setState({
+            user: result
+          })
+        }
+      })
+    }
+  }
+
   signUp = (user) => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -56,7 +76,7 @@ class App extends Component {
       }  
     })
   }
-
+  
   render(){
     return (
       <div className="App">

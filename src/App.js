@@ -2,6 +2,7 @@ import './App.css';
 import { Component } from 'react';
 import Registration from './components/Registration';
 import SignIn from './components/SignIn';
+import { UserPage } from './pages/UserPage';
 
 class App extends Component {
 
@@ -13,7 +14,7 @@ class App extends Component {
   componentDidMount(){
     let token = localStorage.getItem('token')
     if(token){
-      fetch('http://localhost:3000/profile', {
+      fetch(`${process.env.REACT_APP_API}/profile`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -31,7 +32,7 @@ class App extends Component {
   }
 
   signUp = (user) => {
-    fetch('http://localhost:3000/users', {
+    fetch(`${process.env.REACT_APP_API}/users`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -50,7 +51,7 @@ class App extends Component {
   }
 
   signIn = (user) => {
-    fetch('http://localhost:3000/login', {
+    fetch(`${process.env.REACT_APP_API}/login`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -80,7 +81,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        {this.state.user.username ? <h2>Welcome {this.state.user.username}</h2> : (
+        {this.state.user.username ? <UserPage user={this.state.user} /> : (
         <>
         <SignIn signIn={this.signIn} error={this.state.error}/>
         <Registration signUp={this.signUp} />}

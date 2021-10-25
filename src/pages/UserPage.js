@@ -5,7 +5,7 @@ export function UserPage(props) {
 
     return (
         <div>
-        <h2>Welcome {props.user.username}</h2>
+        <h2>Welcome {props.user.data.attributes.username}</h2>
         <Logout/>
         </div>
     )

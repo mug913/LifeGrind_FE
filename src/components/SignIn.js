@@ -1,35 +1,35 @@
-import { Component } from 'react'
+import React, {useState} from 'react'
 
-export default class SignIn extends Component {
+export function SignIn(props) {
 
-    state = {
+    const [state, setState] = useState({
         email: '',
         password: '',
-    }
+    })
 
     // update state for matching input name value
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
+    const handleChange = (e) => {
+        setState({...state,[e.target.name]: e.target.value
         })
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        this.props.signIn(this.state)
+        console.log(state)
+        props.signIn(state)
     }
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
                 <h1>Log In</h1>
                 <label>Email :</label>
-                <input name="email" value={this.state.username} onChange={this.handleChange} />
+                <input name="email" value={state.email} onChange={handleChange} />
                 <label>Password :</label>
-                <input type='password' name="password" value={this.state.password} onChange={this.handleChange} />
-                {this.props.error ? <p style={{ color: 'red'}}>{this.props.error}</p> :null}
-                <input type='Submit' value='Authenticate'/>
+                <input type='password' name="password" value={state.password} onChange={handleChange} />
+                {props.error ? <p style={{ color: 'red'}}>{props.error}</p> :null}
+                <input type='Submit' value='Sign In' readOnly/>
             </form>
+        </div>
         )
     }
-}

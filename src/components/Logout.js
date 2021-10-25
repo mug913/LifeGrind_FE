@@ -3,14 +3,15 @@ import React from 'react'
 export function Logout() {
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         localStorage.clear();
+        window.location.href = '/';
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='Submit' value='Logout'/>
+                <input type='Submit' value='Logout' readOnly/>
             </form>
         </div>
     )

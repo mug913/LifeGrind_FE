@@ -16,7 +16,7 @@ export function Registration(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.signUp(state)
+      //  props.signUp(state)
     }
 
     

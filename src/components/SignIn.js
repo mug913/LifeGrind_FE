@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext  } from 'react'
+import { signIn } from '../actions/UserActions'
+import { UserContext } from '../App';
 
-export function SignIn(props) {
-
+export function SignIn() {
+    const {user,dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -13,10 +15,10 @@ export function SignIn(props) {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(state)
-        props.signIn(state)
+        const res = await signIn(state)
+        dispatch({type: 'add', payload: res}) 
     }
 
     return (
@@ -27,7 +29,7 @@ export function SignIn(props) {
                 <input name="email" value={state.email} onChange={handleChange} />
                 <label>Password :</label>
                 <input type='password' name="password" value={state.password} onChange={handleChange} />
-                {props.error ? <p style={{ color: 'red'}}>{props.error}</p> :null}
+                {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
                 <input type='Submit' value='Sign In' readOnly/>
             </form>
         </div>

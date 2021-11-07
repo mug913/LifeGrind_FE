@@ -1,96 +1,60 @@
 import './App.css';
-import { Component } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import {Registration} from './components/Registration';
 import { SignIn } from './components/SignIn';
 import { UserPage } from './pages/UserPage';
+import axios from 'axios';
+import { signIn } from './actions/UserActions';
 
-class App extends Component {
+export const UserContext = React.createContext()
 
-  state = {
-    user: {},
-    error: ""
+//set initial user state
+const userInitialState ={
+  user: {}
+}
+
+//create reducer function
+function userReducer(state,action){
+  switch(action.type){
+    case 'add':
+      return{...state, user: action.payload}
+    default:
+      return userInitialState
   }
+}
 
-  componentDidMount(){
-    let token = localStorage.getItem('token')
-    if(token){
-      fetch(`${process.env.REACT_APP_API}/profile`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
-      .then(res => res.json())
-      .then(result => {
-        if(result.id){
-          this.setState({
-            user: result
-          })
-        }
-      })
-    }
-  }
+function App() {
+  const [state, dispatch] = useReducer(userReducer,userInitialState)
 
-  signUp = (user) => {
-    fetch(`${process.env.REACT_APP_API}/users`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user:{
-          username: user.username,
-          password: user.password,
-          email: user.email
-        }
-      })
-    })
-    .then(res => res.json())
-    .then(user => this.setState({ user }) )
-  }
+  // useEffect(() =>{
+  //   let token = localStorage.getItem('token')
+  //   if(token){
+  //     axios.get(`${process.env.REACT_APP_API}/profile`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Authorization": `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(result => {
+  //       if(result.data){
+  //         dispatch({type: 'add', payload: result.data})
+  //       }
+  //     })
+  //   }
+  // },[]) 
 
-  signIn = (user) => {
-    fetch(`${process.env.REACT_APP_API}/login`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user:{
-          email: user.email,
-          password: user.password,
-        }
-      })
-    })
-    .then(res => res.json())
-    .then(result => {
-      if (result.token){
-        localStorage.setItem('token', result.token)
-        this.setState({ user: result.user })
-       }
-      else {
-        this.setState({
-          error: result.error
-        })
-      }  
-    })
-  }
-  
-  render(){
-     return (
-      <div className="App">
-        {this.state.user.data ? <UserPage user={this.state.user} /> : (
-        <>
-        <SignIn signIn={this.signIn} error={this.state.error}/>
-        <Registration signUp={this.signUp} />
-        </>
-        )
-        }
-      </div>
+  return (
+    <div className="App">
+      <UserContext.Provider value={{state,dispatch}}>
+      {state.user.id ? <UserPage /> : 
+        (<>
+        <SignIn />
+        <Registration />
+        </>)
+      } 
+      </UserContext.Provider>
+    </div>
     );
-  }
 }
 
 export default App;

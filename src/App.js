@@ -26,22 +26,23 @@ function userReducer(state,action){
 function App() {
   const [state, dispatch] = useReducer(userReducer,userInitialState)
 
-  // useEffect(() =>{
-  //   let token = localStorage.getItem('token')
-  //   if(token){
-  //     axios.get(`${process.env.REACT_APP_API}/profile`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Authorization": `Bearer ${token}`
-  //       }
-  //     })
-  //     .then(result => {
-  //       if(result.data){
-  //         dispatch({type: 'add', payload: result.data})
-  //       }
-  //     })
-  //   }
-  // },[]) 
+  useEffect(() =>{
+    let token = localStorage.getItem('token')
+    if(token){
+      axios.get(`${process.env.REACT_APP_API}/profile`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      .then(result => {
+        if(result.data){
+        console.log(result.data)
+         dispatch({type: 'add', payload: result.data.data})
+        }
+      })
+    }
+  },[]) 
 
   return (
     <div className="App">

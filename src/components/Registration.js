@@ -1,36 +1,36 @@
-import { Component } from 'react'
+import React, {useState} from 'react'
 
-export default class Registration extends Component {
+export function Registration(props) {
 
-    state = {
+    const [state, setState] = useState({
         username: '',
         password: '',
         email: ''
-    }
+    })
 
     // update state for matching input name value
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
+    const handleChange = (e) => {
+        setState({...state,[e.target.name]: e.target.value
         })
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        this.props.signUp(this.state)
+      //  props.signUp(state)
     }
 
-    render() {
+    
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
+            <form onSubmit={handleSubmit}>
                 <label>Username :</label>
-                <input name="username" value={this.state.username} onChange={this.handleChange} />
+                <input name="username" value={state.username} onChange={handleChange} />
                 <label>Password :</label>
-                <input type='password' name="password" value={this.state.password} onChange={this.handleChange} />
+                <input type='password' name="password" value={state.password} onChange={handleChange} />
                 <label>Email :</label>
-                <input type='email' name="email" value={this.state.email} onChange={this.handleChange}  />
-                <input type='Submit' value='Register'/>
+                <input type='email' name="email" value={state.email} onChange={handleChange}  />
+                <input type='Submit'  value='Register' readOnly/>
             </form>
+            </div>
         )
-    }
 }

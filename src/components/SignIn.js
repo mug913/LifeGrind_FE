@@ -1,35 +1,37 @@
-import { Component } from 'react'
+import React, {useState, useContext  } from 'react'
+import { signIn } from '../actions/UserActions'
+import { UserContext } from '../App';
 
-export default class SignIn extends Component {
-
-    state = {
+export function SignIn() {
+    const {user,dispatch} = useContext(UserContext);
+    const [state, setState] = useState({
         email: '',
         password: '',
-    }
+    })
 
     // update state for matching input name value
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
+    const handleChange = (e) => {
+        setState({...state,[e.target.name]: e.target.value
         })
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        this.props.signIn(this.state)
+        const res = await signIn(state)
+        dispatch({type: 'add', payload: res}) 
     }
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
                 <h1>Log In</h1>
                 <label>Email :</label>
-                <input name="email" value={this.state.username} onChange={this.handleChange} />
+                <input name="email" value={state.email} onChange={handleChange} />
                 <label>Password :</label>
-                <input type='password' name="password" value={this.state.password} onChange={this.handleChange} />
-                {this.props.error ? <p style={{ color: 'red'}}>{this.props.error}</p> :null}
-                <input type='Submit' value='Authenticate'/>
+                <input type='password' name="password" value={state.password} onChange={handleChange} />
+                {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
+                <input type='Submit' value='Sign In' readOnly/>
             </form>
+        </div>
         )
     }
-}

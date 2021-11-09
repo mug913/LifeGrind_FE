@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { signUp } from '../actions/UserActions'
+import { UserContext } from '../App';
 
 export function Registration(props) {
-
+    const {user,dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -14,9 +16,10 @@ export function Registration(props) {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-      //  props.signUp(state)
+        const res = await signUp(state)
+        dispatch({type: 'add', payload: res}) 
     }
 
     

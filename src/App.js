@@ -1,16 +1,15 @@
 import './App.css';
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import {Registration} from './components/Registration';
 import { SignIn } from './components/SignIn';
 import { UserPage } from './pages/UserPage';
 import axios from 'axios';
-import { signIn } from './actions/UserActions';
 
 export const UserContext = React.createContext()
 
 //set initial user state
 const userInitialState ={
-  user: {}
+  user: {id: false}
 }
 
 //create reducer function
@@ -26,6 +25,7 @@ function userReducer(state,action){
 function App() {
   const [state, dispatch] = useReducer(userReducer,userInitialState)
 
+  //check for presence of valid JWT and if so request user data from backend on. 
   useEffect(() =>{
     let token = localStorage.getItem('token')
     if(token){
@@ -36,10 +36,13 @@ function App() {
         }
       })
       .then(result => {
-        if(result.data){
-        console.log(result.data)
+        if(!result.data.error){
+        console.log(result)
          dispatch({type: 'add', payload: result.data.data})
         }
+        else
+        alert(result.data.error)
+        localStorage.clear();
       })
     }
   },[]) 

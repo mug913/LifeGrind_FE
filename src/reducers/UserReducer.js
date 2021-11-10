@@ -1,15 +1,15 @@
 // import React, {useReducer} from 'react';
 
-// const user = {
-//     id: null,
-//     username: null
+// //set initial user state
+// const userInitialState ={
+//   user: {id: false}
 // }
 
-// export function userReducer(state,action){
+// export function userReducer(state,action) {
 //     switch(action.type){
-//         case "add":
-//             return {id: state.id + 1, username: "a"}
-//         default:
-//             return user
+//       case 'add':
+//         return{...state, user: action.payload}
+//       default:
+//         return userInitialState
 //     }
-// }
+//   }

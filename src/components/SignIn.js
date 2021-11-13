@@ -18,6 +18,8 @@ export function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await signIn(state)
+        res.data.status == 401 ? 
+        alert(res.data.error) :
         dispatch({type: 'add', payload: res}) 
     }
 

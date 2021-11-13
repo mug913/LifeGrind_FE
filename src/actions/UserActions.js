@@ -15,11 +15,13 @@ export const signUp = async (user) =>
         }
       })
       .then(res => {
-        localStorage.setItem('token', res.data.token)
-        console.log(res.data.user.data)
-        return(res.data.user.data)
+        if (res.status !== 422) {
+          localStorage.setItem('token', res.data.token)
+          return(res)}
+        else
+          return(res)
       }).catch(function (error){
-      return(error.response.statusText)
+      return(error.response.data)
       })
 
 
@@ -36,10 +38,13 @@ export const signIn = async (user) =>
         }
     })
      .then(res => {
+      if (res.data.status !== 401) {
         localStorage.setItem('token', res.data.token)
-        console.log(res.data.user.data)
-        return(res.data.user.data)
+        return(res.data.user.data)}
+      else
+      console.log(res)
+        return(res)
     }).catch(function (error){
-      return(error.response.statusText)
+      return(error.response.data)
     })
   

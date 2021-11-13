@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { signUp } from '../actions/UserActions'
 import { UserContext } from '../App';
+import {Alert} from 'react-bootstrap'
 
 export function Registration(props) {
     const {user,dispatch} = useContext(UserContext);
@@ -19,8 +20,10 @@ export function Registration(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await signUp(state)
-        dispatch({type: 'add', payload: res}) 
-    }
+        res.data.status == 422 ? 
+        res.data.error.map((error) => alert(error)) :
+            dispatch({type: 'add', payload: res}) 
+        }
 
     
         return (

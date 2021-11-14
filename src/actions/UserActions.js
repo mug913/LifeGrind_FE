@@ -16,7 +16,6 @@ export const signUp = async (user) =>
       })
       .then(res => {
         if (res.data.status !== 422) {
-          console.log(res)
           localStorage.setItem('token', res.data.token)
           return(res)}
         else

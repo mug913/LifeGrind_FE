@@ -41,7 +41,7 @@ export const signIn = async (user) =>
      .then(res => {
       if (res.data.status !== 401) {
         localStorage.setItem('token', res.data.token)
-        return(res.data.user.data)}
+        return(res)}
       else
       console.log(res)
         return(res)

@@ -21,12 +21,12 @@ export function SignIn() {
         e.preventDefault()
         const res = await signIn(state)
         const errorList = []
+        console.log(res.data)
         if (res.data.status == 401) {
-            console.log(res)
             errorList.push(<div>{res.data.error}</div>)
             setState({...state, errors: errorList})}
         else
-        dispatch({type: 'add', payload: res}) 
+        dispatch({type: 'add', payload: res.data.user.data}) 
     }
 
     return (

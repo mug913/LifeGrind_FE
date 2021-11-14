@@ -8,7 +8,8 @@ export function Registration(props) {
     const [state, setState] = useState({
         username: '',
         password: '',
-        email: ''
+        email: '',
+        errors: []
     })
 
     // update state for matching input name value
@@ -20,15 +21,20 @@ export function Registration(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await signUp(state)
-        res.data.status == 422 ? 
-        res.data.error.map((error) => alert(error)) :
+        const errorList = []
+        if (res.data.status == 422) {
+            res.data.error.map((error) => errorList.push(<div key={error.index}>{error}</div>))
+            setState({...state, errors: errorList})}
+        else {
             dispatch({type: 'add', payload: res}) 
         }
+    }
 
     
         return (
             <div>
             <form onSubmit={handleSubmit}>
+                <h1>Register</h1>
                 <label>Username :</label>
                 <input name="username" value={state.username} onChange={handleChange} />
                 <label>Password :</label>
@@ -36,7 +42,9 @@ export function Registration(props) {
                 <label>Email :</label>
                 <input type='email' name="email" value={state.email} onChange={handleChange}  />
                 <input type='Submit'  value='Register' readOnly/>
+                {state.errors.length > 0 && <Alert varient="danger">{state.errors}</Alert>}
             </form>
+          
             </div>
         )
 }

@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { signUp } from '../actions/UserActions'
-import { UserContext } from '../App';
+import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
 export function Registration(props) {
@@ -36,7 +36,7 @@ export function Registration(props) {
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <label>Username :</label>
-                <input name="username" value={state.username} onChange={handleChange} />
+                <input type='text' name="username" value={state.username} onChange={handleChange} />
                 <label>Password :</label>
                 <input type='password' name="password" value={state.password} onChange={handleChange} />
                 <label>Email :</label>

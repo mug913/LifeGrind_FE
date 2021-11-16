@@ -1,6 +1,6 @@
 import React, {useState, useContext  } from 'react'
 import { signIn } from '../actions/UserActions'
-import { UserContext } from '../App';
+import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
 export function SignIn() {

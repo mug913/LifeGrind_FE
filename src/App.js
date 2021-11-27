@@ -6,6 +6,7 @@ import { UserPage } from './pages/UserPage';
 import UserContextProvider from './contexts/UserContext';
 import { LoginPage } from './pages/LoginPage';
 import { UserContext } from './contexts/UserContext';
+import 'bootstrap/dist/css/bootstrap.css';
 
 // export const UserContext = React.createContext()
 

@@ -1,15 +1,15 @@
 import React, {useContext, useLayoutEffect}  from 'react'
 import { Logout } from '../components/Logout'
+import {DayLog} from '../components/DayLog'
 import { UserContext } from '../contexts/UserContext';
 import { Table, Form } from 'react-bootstrap'
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.css';
+
 
 
 export const UserPage = (props) => {
     const user = useContext(UserContext);
- 
-    console.log(user)
+
      // check for presence of valid JWT and if so request user data from backend on. 
     useLayoutEffect(() =>{
     let token = localStorage.getItem('token')
@@ -36,12 +36,9 @@ export const UserPage = (props) => {
         <div>
         {user.user.id && <div>
           <h2>Welcome {user.user.attributes.username}</h2> 
+          <DayLog/>
           <div>
-         <Form>
-            <Form.Group controlId="formBasicEmail">
-                <Form.Control type="text" />
-            </Form.Group>
-            </Form>
+      
             <Table striped bordered hover>
             <thread>
             </thread>

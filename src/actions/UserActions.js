@@ -15,13 +15,17 @@ export const signUp = async (user) =>
         }
       })
       .then(res => {
-        if (res.data.status !== 422) {
+        if (res.data.status == 200) {
           localStorage.setItem('token', res.data.token)
           return(res)}
         else
           return(res)
       }).catch(function (error){
-      return(error.response.data)
+        if (!error.response) {
+          return ({data:{status: 'null', error: ['Error: Network Connection Unavailable']}})}
+        else {
+           return(error.response.data)
+        }
       })
 
 

@@ -31,6 +31,7 @@ export const UserPage = (props) => {
     }
    },[]) 
 
+    //if user id in state, render user page content
     return (
         <div>
         {user.user.id && <div>

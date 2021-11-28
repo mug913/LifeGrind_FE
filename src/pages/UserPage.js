@@ -2,15 +2,15 @@ import React, {useContext, useLayoutEffect}  from 'react'
 import { Logout } from '../components/Logout'
 import {DayLog} from '../components/DayLog'
 import { UserContext } from '../contexts/UserContext';
-import { Table, Form } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import axios from 'axios';
 
 
 
-export const UserPage = (props) => {
-    const user = useContext(UserContext);
+export const UserPage = () => {
+    const {user,dispatch} = useContext(UserContext);
 
-     // check for presence of valid JWT and if so request user data from backend on. 
+    // check for presence of valid JWT and if so request user data from backend on. 
     useLayoutEffect(() =>{
     let token = localStorage.getItem('token')
     if(token){
@@ -22,20 +22,23 @@ export const UserPage = (props) => {
       })
       .then(result => {
         if(!result.data.error){
-        user.dispatch({type: 'add', payload: result.data.data})
+        localStorage.clear('token');
+        console.log(result.data)
+        localStorage.setItem('token', result.data.token)
+        dispatch({type: 'add', payload: result.data.user.data})
         }
-        else
+        else{
         alert(result.data.error)
-        localStorage.clear();
+        localStorage.clear();}
       })
     }
-   },[]) 
+   },[dispatch]) 
 
     //if user id in state, render user page content
     return (
         <div>
-        {user.user.id && <div>
-          <h2>Welcome {user.user.attributes.username}</h2> 
+        {user.id && <div>
+          <h2>Welcome {user.attributes.username}</h2> 
           <DayLog/>
           <div>
       
@@ -43,7 +46,7 @@ export const UserPage = (props) => {
             <thread>
             </thread>
             <tbody>
-                {user.user.attributes.areas.map(area =>(
+                {user.attributes.areas.map(area =>(
                 <tr key={area.id}>
                    <td>{area.position}</td>
                 </tr>

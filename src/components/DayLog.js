@@ -1,7 +1,6 @@
 import React from 'react'
-import { Button, Container, Row, Col } from 'react-bootstrap'
 
-export const DayLog = (props) => {
+export const DayLog = () => {
 const currentDateButton = new Date().toDateString()
 
     return(

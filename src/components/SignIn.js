@@ -22,11 +22,13 @@ export function SignIn() {
         const res = await signIn(state)
         const errorList = []
         console.log(res.data)
-        if (res.data.status == 401) {
+        if (res.data.status === 401) {
             errorList.push(<div>{res.data.error}</div>)
             setState({...state, errors: errorList})}
         else
         dispatch({type: 'add', payload: res.data.user.data}) 
+       // console.log(res.data.user.data)
+        console.log(user.id)
     }
 
     return (

@@ -3,8 +3,8 @@ import { signUp } from '../actions/UserActions'
 import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
-export function Registration(props) {
-    const {user,dispatch} = useContext(UserContext);
+export function Registration() {
+    const {dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -23,7 +23,7 @@ export function Registration(props) {
         const res = await signUp(state)
         const errorList = []
         console.log(res.data)
-        if (res.data.status != 202) {
+        if (res.data.status !== 202) {
             res.data.error.map((error) => errorList.push(<div key={error.index}>{error}</div>))
             setState({...state, errors: errorList})}
         else {

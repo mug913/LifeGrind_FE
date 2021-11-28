@@ -15,7 +15,7 @@ export const signUp = async (user) =>
         }
       })
       .then(res => {
-        if (res.data.status == 200) {
+        if (res.data.status === 200) {
           localStorage.setItem('token', res.data.token)
           return(res)}
         else

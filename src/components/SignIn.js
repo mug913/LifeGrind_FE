@@ -1,6 +1,6 @@
 import React, {useState, useContext  } from 'react'
 import { signIn } from '../actions/UserActions'
-import { UserContext } from '../App';
+import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
 export function SignIn() {
@@ -21,12 +21,14 @@ export function SignIn() {
         e.preventDefault()
         const res = await signIn(state)
         const errorList = []
-        if (res.data.status == 401) {
-            console.log(res)
+        console.log(res.data)
+        if (res.data.status === 401) {
             errorList.push(<div>{res.data.error}</div>)
             setState({...state, errors: errorList})}
         else
-        dispatch({type: 'add', payload: res}) 
+        dispatch({type: 'add', payload: res.data.user.data}) 
+       // console.log(res.data.user.data)
+        console.log(user.id)
     }
 
     return (

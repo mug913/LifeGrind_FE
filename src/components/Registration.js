@@ -1,10 +1,10 @@
 import React, {useState, useContext} from 'react'
 import { signUp } from '../actions/UserActions'
-import { UserContext } from '../App';
+import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
-export function Registration(props) {
-    const {user,dispatch} = useContext(UserContext);
+export function Registration() {
+    const {dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -22,11 +22,12 @@ export function Registration(props) {
         e.preventDefault()
         const res = await signUp(state)
         const errorList = []
-        if (res.data.status == 422) {
+        console.log(res.data)
+        if (res.data.status !== 202) {
             res.data.error.map((error) => errorList.push(<div key={error.index}>{error}</div>))
             setState({...state, errors: errorList})}
         else {
-            dispatch({type: 'add', payload: res}) 
+            dispatch({type: 'add', payload:  res.data.user.data}) 
         }
     }
 
@@ -36,7 +37,7 @@ export function Registration(props) {
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <label>Username :</label>
-                <input name="username" value={state.username} onChange={handleChange} />
+                <input type='text' name="username" value={state.username} onChange={handleChange} />
                 <label>Password :</label>
                 <input type='password' name="password" value={state.password} onChange={handleChange} />
                 <label>Email :</label>

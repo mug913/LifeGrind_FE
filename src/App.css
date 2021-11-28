@@ -13,3 +13,8 @@ form {
 form input{
   margin: 0.5rem;
 }
+
+button {
+  display: flex;
+  align-items: center;
+}

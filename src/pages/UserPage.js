@@ -22,13 +22,12 @@ export const UserPage = () => {
       })
       .then(result => {
         if(!result.data.error){
-        localStorage.clear('token');
         console.log(result.data)
         localStorage.setItem('token', result.data.token)
         dispatch({type: 'add', payload: result.data.user.data})
         }
         else{
-        alert(result.data.error)
+        //alert(result.data.error)
         localStorage.clear();}
       })
     }

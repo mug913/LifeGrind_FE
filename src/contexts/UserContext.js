@@ -5,7 +5,10 @@ export const UserContext = createContext();
 
 const userInitialState = {
         name: '', 
-        id: false
+        id: false,
+        attributes: {
+            areas: [{position: '0'}]
+        }
     }
 
 const UserContextProvider = (props) => {

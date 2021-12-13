@@ -35,31 +35,29 @@ export const UserPage = () => {
     }
    },[]) 
 
-   const validateData = () => {
-     try{
-      console.log(dayArea)
-      console.log(user.attributes.username)
-     }catch(e){}
-   }
+  // const validateData = () => {
+  //   try{
+  //    console.log(dayArea)
+  //    console.log(user.attributes.username)
+  //   }catch(e){}
+  // }
     //if user id in state, render user page content
     return (
         
         <div>
-          {validateData()}
+     
         {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
           <DayLog name={dayArea.position}/>
           <div>
             <Table striped bordered hover>
-            <thread>
-            </thread>
-            <tbody>
+              <tbody>
                 {activeAreas.map(area =>(
                  <tr key={area.id}>
-                   <AreaLog name={area.position}/>
+                   <AreaLog area={area}/>
                 </tr>
-            ))}
-            </tbody>
+                ))}
+              </tbody>
             </Table>
         </div>
         <Logout/> </div>}

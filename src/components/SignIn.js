@@ -27,9 +27,7 @@ export function SignIn() {
             setState({...state, errors: errorList})}
         else
         dispatch({type: 'add', payload: res.data.user.data}) 
-       // console.log(res.data.user.data)
-        console.log(user.id)
-    }
+     }
 
     return (
         <div>

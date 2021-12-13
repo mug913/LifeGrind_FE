@@ -12,6 +12,13 @@ export const userReducer = (user,action) => {
         return action.payload
       case 'rescue':
         return userInitialState
+      case 'add_area':
+       return {
+         ...user,
+         attributes: {
+           areas: action.payload
+         }
+        }
       default:
         return user
     }

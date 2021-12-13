@@ -1,25 +1,28 @@
 import React, {useState} from 'react'
+import {NewAreaForm} from './NewAreaForm'
 
 export const AreaLog = (props) => {
 
-    const [showLog, setShowLog] = useState(false)
-
-    const openTest = showLog ? "shown" : "closed"
-
-    const AreaLogClick = (e) =>{
+    const [showPanel, setShowPanel] = useState(false)
+    const logRecord = [`Streak: ${props.area.streak}`,<br/>,
+                       `Level: ${props.area.level}`,<br/>,
+                       `Last Update: ${props.area.updated_at}`]
+    const panelContent = props.area.name ? logRecord : <NewAreaForm setShowPanel={setShowPanel}/>
+    const panel = showPanel ? panelContent : null
+       
+    const AreaButtonClick = (e) =>{
         e.preventDefault()
-        setShowLog(!(showLog))
+        setShowPanel(!(showPanel))
     }
+
+    const areaButton = <button onClick={AreaButtonClick}> {props.area.name ? props.area.name : "Create New Area"} </button>
 
     return(
         <div>
-           <form>
-               {'Record Entry:'}
-                <button onClick={AreaLogClick}>
-                    {props.name}
-                </button>
-                {openTest}
-            </form>
+            <logArea>
+            {areaButton}
+            {panel}
+            </logArea>
         </div>
     )
 

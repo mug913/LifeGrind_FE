@@ -22,7 +22,6 @@ export function Registration() {
         e.preventDefault()
         const res = await signUp(state)
         const errorList = []
-        console.log(res.data)
         if (res.data.status !== 202) {
             res.data.error.map((error) => errorList.push(<div key={error.index}>{error}</div>))
             setState({...state, errors: errorList})}

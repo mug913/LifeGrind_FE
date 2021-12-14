@@ -15,7 +15,7 @@ export const signUp = async (user) =>
         }
       })
       .then(res => {
-        if (res.data.status === 200) {
+        if (res.data.status === 202) {
           localStorage.setItem('token', res.data.token)
           return(res)}
         else
@@ -42,7 +42,7 @@ export const signIn = async (user) =>
         }
     })
      .then(res => {
-      if (res.data.status !== 401) {
+      if (res.data.status === 202) {
         localStorage.setItem('token', res.data.token)
         return(res)}
       else

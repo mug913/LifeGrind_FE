@@ -15,13 +15,15 @@ export const AreaLog = (props) => {
         setShowPanel(!(showPanel))
     }
 
-    const areaButton = <button onClick={AreaButtonClick} > {props.area.name ? props.area.name : "Create New Area"} </button>
+    const areaButton = <button onClick={AreaButtonClick}> {props.area.name ? props.area.name : "Create New Area"} </button>
 
     return(
         <div className={'area-' + props.area.position}>
             <logArea>
-            {areaButton}
-            {panel}
+            <div class='area_content'>
+                {areaButton}
+                {panel}
+            </div>
             </logArea>
         </div>
     )

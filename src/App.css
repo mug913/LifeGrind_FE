@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-form {
-  align-items: center;
-  flex-direction: column;
-  width: 300px;
- }
 
 form input{
   margin: 0.5rem;
@@ -19,31 +14,27 @@ form input{
   flex-direction: column;
   width: 300px;
   padding: 4rem;
-
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
   background-color: grey;
 }
 
-button {
-  display: flex;
-  align-items: center;
-}
 
 .log_area {  
   display: grid;
-  grid-template-columns: 20% 20% 20%;
-  grid-template-rows: 16% 16% 16% 16% 16% 16%;
+  grid-template-columns: repeat(3, 20%);
+  grid-template-rows: repeat(6, 16%);;
   grid-template-areas: 
-    "1 area1 3"
-    "area2 5 area3"
-    "7 dayArea 9"
-    "area4 11 area5"
-    "13 area6 15"
-    "16 foot 18";
+    ". area1 ."
+    "area2 . area3"
+    ". dayArea ."
+    "area4 . area5"
+    ". area6 ."
+    ". foot .";
   column-gap: 4em; /* control the gap between both columns*/ 
   row-gap: 4em; /* control the gap between both columns*/
   padding-left: 20%;
   padding-right: 20%;
+  text-align: center;
 }
 
 .area-0 {
@@ -55,36 +46,39 @@ button {
 
 .area-1 {
   grid-area: area1; 
-  background-color: blue;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
 
 .area-2 {
   grid-area: area2; 
-  background-color: green;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-3 {
   grid-area: area3; 
-  background-color: yellow;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-4 {
   grid-area: area4; 
-  background-color: orange;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-5 {
   grid-area: area5; 
-  background-color: purple;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-6 {
   grid-area: area6; 
-  background-color: chartreuse;
+  background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
 
  .footer {
   grid-area: foot; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
+

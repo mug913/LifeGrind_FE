@@ -8,7 +8,9 @@ const dayButton = <button> {currentDateButton} </button>
     return(
         <div className='area-0'>
             {`Record Daily Data Entry:`}
-            {dayButton}
+            <div class='area_content'>
+                {dayButton}
+            </div>
         </div>
     )
 

@@ -32,9 +32,9 @@ form input{
     ". foot .";
   column-gap: 4em; /* control the gap between both columns*/ 
   row-gap: 4em; /* control the gap between both columns*/
-  padding-left: 20%;
-  padding-right: 20%;
   text-align: center;
+  align-items: center;  
+  justify-content: center;
 }
 
 .area-0 {

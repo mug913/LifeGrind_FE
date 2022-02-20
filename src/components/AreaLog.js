@@ -21,7 +21,7 @@ export const AreaLog = (props) => {
         <div className={'area-' + props.area.position}>
             <logArea>
             <div class='area_content'>
-                {areaButton}
+                {areaButton}<br></br>
                 {panel}
             </div>
             </logArea>

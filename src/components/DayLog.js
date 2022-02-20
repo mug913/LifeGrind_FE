@@ -2,15 +2,13 @@ import React from 'react'
 
 export const DayLog = (props) => {
 const currentDateButton = new Date().toDateString()
+const dayButton = <button> {currentDateButton} </button>
+
 
     return(
-        <div>
-           <form>
-               {`Record Day ${props.name} Entry:`}
-                <button>
-                    {currentDateButton}
-               </button>
-            </form>
+        <div className='area-0'>
+            {`Record Daily Data Entry:`}
+            {dayButton}
         </div>
     )
 

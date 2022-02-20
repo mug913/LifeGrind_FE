@@ -5,9 +5,11 @@ import {Alert} from 'react-bootstrap'
 
 export const NewAreaForm = (props) => {
 
+    const area = props.area;
     const {user,dispatch} = useContext(UserContext);
     const [state, setState] = useState({
-        name: '',
+        name:'',
+        area,
         errors: []
     })
 
@@ -19,12 +21,14 @@ export const NewAreaForm = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         let token = localStorage.getItem('token')
-        const res = await createArea(state, token)
+        console.log(state.area, state.name)
+        const res = await createArea(state.area, state.name, token)
         const errorList = []
         if (res.data) {
-        console.log(res.data.areas)
-        dispatch({type: 'add_area', payload: res.data.areas}) 
-        props.setShowPanel(false)}
+            console.log(res.data.areas)
+            dispatch({type: 'add_area', payload: res.data.areas}) 
+        props.setShowPanel(false)
+        }
         else 
         console.log(res)
     }

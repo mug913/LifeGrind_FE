@@ -9,7 +9,7 @@ export function Logout() {
     }
 
     return (
-        <div>
+        <div className='footer'>
             <form onSubmit={handleSubmit}>
                 <input type='Submit' value='Logout' readOnly/>
             </form>

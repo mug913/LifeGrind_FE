@@ -10,7 +10,7 @@ import axios from 'axios';
 export const UserPage = () => {
 
   const {user,dispatch} = useContext(UserContext);
-  const dayArea =  user.attributes.areas[0]
+  const dayArea =  user.attributes.areas[0] ?? [{position: 0}]
   const activeAreas =  user.attributes.areas.slice(1, user.attributes.areas.length)
 
     // check for presence of valid JWT and if so request user data from backend on. 
@@ -37,16 +37,16 @@ export const UserPage = () => {
 
 
     return (
-      <div>
+      <div >
         {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
-          <DayLog name={dayArea.position} className='area-0'/>
-          <div>
+          <div class="log_area">
+          <DayLog name={dayArea.position} />
             {activeAreas.map(area =>(
             <AreaLog area={area}/>
             ))}
-          </div>
           <Logout/> 
+          </div>
         </div>}
       </div>
     )

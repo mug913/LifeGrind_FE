@@ -2,66 +2,83 @@
   box-sizing: border-box;
 }
 
-form {
+
+form input{
+  margin: 0.5rem;
+}
+
+.splash_form {
   margin: 5rem auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 300px;
   padding: 4rem;
-
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
-  background-color: mediumaquamarine;
+  background-color: grey;
 }
 
-form input{
-  margin: 0.5rem;
-}
 
-button {
-  display: flex;
-  align-items: center;
-}
-
-logArea {  
-  margin: 5rem auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 200px;
-  padding: 4rem;
-
-  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
-  background-color: rgb(82, 180, 87);
-
-}
-
-[class*="area-"] 
-{
-  width: 8.33%;
-  background-color: red;
-  padding: 60px;
-  flex-direction: column;
+.log_area {  
+  display: grid;
+  grid-template-columns: repeat(3, 20%);
+  grid-template-rows: repeat(6, 16%);;
+  grid-template-areas: 
+    ". area1 ."
+    "area2 . area3"
+    ". dayArea ."
+    "area4 . area5"
+    ". area6 ."
+    ". foot .";
+  column-gap: 4em; /* control the gap between both columns*/ 
+  row-gap: 4em; /* control the gap between both columns*/
+  text-align: center;
+  align-items: center;  
+  justify-content: center;
 }
 
 .area-0 {
-  float: center;
+  grid-area: dayArea; 
+  background-color: mediumaquamarine;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
+
+
 .area-1 {
-  float: center;
+  grid-area: area1; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
+
 .area-2 {
-  float: left;
+  grid-area: area2; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-3 {
-  float: right;
+  grid-area: area3; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-4 {
-  float: left;
+  grid-area: area4; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-5 {
-  float: right;
+  grid-area: area5; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
  .area-6 {
-  float: center;
+  grid-area: area6; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
+
+ .footer {
+  grid-area: foot; 
+  background-color: grey;
+  box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
+ }
+

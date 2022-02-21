@@ -16,6 +16,7 @@ export const userReducer = (user,action) => {
        return {
          ...user,
          attributes: {
+           ...user.attributes,
            areas: action.payload
          }
         }

@@ -3,9 +3,8 @@ import { Logout } from '../components/Logout'
 import {DayLog} from '../components/DayLog'
 import { AreaLog } from '../components/AreaLog';
 import { UserContext } from '../contexts/UserContext';
-import { Table } from 'react-bootstrap'
+import { PopUp } from '../components/PopUp';
 import axios from 'axios';
-
 
 export const UserPage = () => {
 
@@ -38,17 +37,21 @@ export const UserPage = () => {
 
     return (
       <div >
-        {console.log(user)}
-        {user.id && <div>
+          {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
-          <div class="log_area">
+          <div className="pop-up">
+            <PopUp/>
+          </div>
+          <div class="log-area">
           <DayLog name={dayArea.position} />
             {activeAreas.map(area =>(
             <AreaLog area={area}/>
             ))}
           <Logout/> 
           </div>
-        </div>}
+         
+        
+          </div>}
       </div>
     )
 }

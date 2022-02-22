@@ -20,6 +20,7 @@ const dayButton = <button onClick={DayButtonClick}> {currentDateButton} </button
             <div class='area_content'>
                 {dayButton}
             </div>
+                {panel}    
         </div>
     )
 

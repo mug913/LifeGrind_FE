@@ -38,6 +38,7 @@ export const UserPage = () => {
 
     return (
       <div >
+        {console.log(user)}
         {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
           <div class="log_area">

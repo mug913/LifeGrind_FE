@@ -1,7 +1,6 @@
-* {
+/* * {
   box-sizing: border-box;
-}
-
+} */
 
 form input{
   margin: 0.5rem;
@@ -21,8 +20,9 @@ form input{
 
 .log-area {  
   display: grid;
+  position: flex;  
   grid-template-columns: repeat(3, 20%);
-  grid-template-rows: repeat(6, 16%);;
+  grid-template-rows: repeat(6,10%);;
   grid-template-areas: 
     ". area1 ."
     "area2 . area3"
@@ -30,8 +30,8 @@ form input{
     "area4 . area5"
     ". area6 ."
     ". foot .";
-  column-gap: 4em; /* control the gap between both columns*/ 
-  row-gap: 4em; /* control the gap between both columns*/
+  column-gap: 4em; 
+  row-gap: 4em;  
   text-align: center;
   align-items: center;  
   justify-content: center;
@@ -85,17 +85,15 @@ form input{
  .pop-up {
   display: none;
   grid-area: dayArea; 
-  /* top: 35%; 
-  left: 42%; */
   z-index: 100;
+  height: 200;
+  width: 200;
 }
 
 .pop-up-content {
-  height: 300px;
-  width: 300px;
   background: black;
   color: white;
-  display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
 

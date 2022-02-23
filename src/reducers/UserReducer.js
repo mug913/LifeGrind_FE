@@ -1,10 +1,12 @@
-const userInitialState = {
-  name: '', 
-  id: false,
-  attributes: {
-      areas: [{position: 0}]
-  }
-}
+import { userInitialState } from "../contexts/UserContext"
+
+// const userInitialState = {
+//   name: '', 
+//   id: false,
+//   attributes: {
+//       areas: [{position: 0}]
+//   }
+// }
 
 export const userReducer = (user,action) => {
     switch(action.type){
@@ -16,6 +18,7 @@ export const userReducer = (user,action) => {
        return {
          ...user,
          attributes: {
+           ...user.attributes,
            areas: action.payload
          }
         }

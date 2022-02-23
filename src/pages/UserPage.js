@@ -3,14 +3,15 @@ import { Logout } from '../components/Logout'
 import {DayLog} from '../components/DayLog'
 import { AreaLog } from '../components/AreaLog';
 import { UserContext } from '../contexts/UserContext';
-import { Table } from 'react-bootstrap'
+import { PopUpContext } from '../contexts/PopUpContext';
+import { PopUp } from '../components/PopUp';
 import axios from 'axios';
-
 
 export const UserPage = () => {
 
   const {user,dispatch} = useContext(UserContext);
-  const dayArea =  user.attributes.areas[0]
+  const {popUpContent} = useContext(PopUpContext);
+  const dayArea =  user.attributes.areas[0] ?? [{position: 0}]
   const activeAreas =  user.attributes.areas.slice(1, user.attributes.areas.length)
 
     // check for presence of valid JWT and if so request user data from backend on. 
@@ -37,17 +38,22 @@ export const UserPage = () => {
 
 
     return (
-      <div>
-        {user.id && <div>
+      <div >
+          {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
-          <DayLog name={dayArea.position} className='area-0'/>
-          <div>
+          <div class="log-area">
+            <DayLog area={dayArea} />
             {activeAreas.map(area =>(
             <AreaLog area={area}/>
             ))}
+              <div className="pop-up">
+            <PopUp content={popUpContent}/>
           </div>
           <Logout/> 
-        </div>}
+          </div>
+         
+        
+          </div>}
       </div>
     )
 }

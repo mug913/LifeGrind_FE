@@ -41,14 +41,14 @@ export const UserPage = () => {
       <div >
           {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
-          <div className="pop-up">
-            <PopUp content={popUpContent}/>
-          </div>
           <div class="log-area">
-            <DayLog name={dayArea.position} />
+            <DayLog area={dayArea} />
             {activeAreas.map(area =>(
             <AreaLog area={area}/>
             ))}
+              <div className="pop-up">
+            <PopUp content={popUpContent}/>
+          </div>
           <Logout/> 
           </div>
          

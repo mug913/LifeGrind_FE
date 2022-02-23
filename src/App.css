@@ -26,7 +26,7 @@ form input{
   grid-template-areas: 
     ". area1 ."
     "area2 . area3"
-    ". dayArea ."
+    ". area0 ."
     "area4 . area5"
     ". area6 ."
     ". foot .";
@@ -38,7 +38,7 @@ form input{
 }
 
 .area-0 {
-  grid-area: dayArea; 
+  grid-area: area0; 
   background-color: mediumaquamarine;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
@@ -84,9 +84,9 @@ form input{
 
  .pop-up {
   display: none;
-  position: absolute;
-  top: 35%; 
-  left: 42%;
+  grid-area: dayArea; 
+  /* top: 35%; 
+  left: 42%; */
   z-index: 100;
 }
 

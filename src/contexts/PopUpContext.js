@@ -1,10 +1,9 @@
 import React, { useReducer, createContext} from 'react';
 import {popUpReducer} from '../reducers/PopUpReducer';
-import {DayAreaForm} from '../components/DayAreaForm'
 
 export const PopUpContext = createContext();
 
-export const popUpInitialState = <DayAreaForm />
+export const popUpInitialState = "Hi"
 
 
 const PopUpContextProvider = (props) => {

@@ -21,17 +21,18 @@ form input{
 .log-area {  
   display: grid;
   position: flex;  
-  grid-template-columns: repeat(3, 20%);
-  grid-template-rows: repeat(6,10%);;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(12,100px);;
   grid-template-areas: 
     ". area1 ."
-    "area2 . area3"
-    ". area0 ."
-    "area4 . area5"
+    "area2 area1 area3"
+    "area2 area0 area3"
+    "area4 area0 area5"
+    "area4 area6 area5"
     ". area6 ."
+     ". foot ."
     ". foot .";
-  column-gap: 4em; 
-  row-gap: 4em;  
+  column-gap: 1em; 
   text-align: center;
   align-items: center;  
   justify-content: center;
@@ -83,9 +84,10 @@ form input{
  }
 
  .pop-up {
+   position: relative;
   display: none;
   grid-area: dayArea; 
-  z-index: 100;
+   z-index: 100;
   height: 200;
   width: 200;
 }

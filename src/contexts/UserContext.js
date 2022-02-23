@@ -3,7 +3,7 @@ import {userReducer} from '../reducers/UserReducer';
 
 export const UserContext = createContext();
 
-const userInitialState = {
+export const userInitialState = {
         name: '', 
         id: false,
         attributes: {

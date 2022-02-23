@@ -1,10 +1,11 @@
-import React, {useState, useContext} from 'react'
-
+import React from 'react'
 export const PopUp = (props) => {
+
+
 
     return(
         <div className='pop-up-content'>
-            Hello
+          {props.content}
         </div>
     )
 }

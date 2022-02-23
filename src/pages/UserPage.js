@@ -3,12 +3,14 @@ import { Logout } from '../components/Logout'
 import {DayLog} from '../components/DayLog'
 import { AreaLog } from '../components/AreaLog';
 import { UserContext } from '../contexts/UserContext';
+import { PopUpContext } from '../contexts/PopUpContext';
 import { PopUp } from '../components/PopUp';
 import axios from 'axios';
 
 export const UserPage = () => {
 
   const {user,dispatch} = useContext(UserContext);
+  const {popUpContent} = useContext(PopUpContext);
   const dayArea =  user.attributes.areas[0] ?? [{position: 0}]
   const activeAreas =  user.attributes.areas.slice(1, user.attributes.areas.length)
 
@@ -40,10 +42,10 @@ export const UserPage = () => {
           {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
           <div className="pop-up">
-            <PopUp/>
+            <PopUp content={popUpContent}/>
           </div>
           <div class="log-area">
-          <DayLog name={dayArea.position} />
+            <DayLog name={dayArea.position} />
             {activeAreas.map(area =>(
             <AreaLog area={area}/>
             ))}

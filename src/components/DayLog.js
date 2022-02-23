@@ -4,12 +4,13 @@ import {DayAreaForm} from './DayAreaForm'
 export const DayLog = (props) => {
 const [showPanel, setShowPanel] = useState(false)
 const currentDateButton = new Date().toDateString()
-const panelContent = <DayAreaForm setShowPanel={setShowPanel} />
-const panel = showPanel ? panelContent : null
+// const panelContent = <DayAreaForm setShowPanel={setShowPanel} />
+const panel = showPanel ? "block" : "none"
 
 const DayButtonClick = (e) =>{
     e.preventDefault()
     setShowPanel(!(showPanel))
+    document.querySelector(".pop-up").style.display = panel;
 }
 
 const dayButton = <button onClick={DayButtonClick}> {currentDateButton} </button>
@@ -20,7 +21,6 @@ const dayButton = <button onClick={DayButtonClick}> {currentDateButton} </button
             <div class='area_content'>
                 {dayButton}
             </div>
-                {panel}    
         </div>
     )
 

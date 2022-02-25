@@ -10,8 +10,8 @@ export const PopUp = (props) => {
         <div className='pop-up-content'>
            <div className='close-btn'>
            <button onClick={closeBtnClick}> X </button>
+           </div>
           {props.content}
-          </div>
         </div>
     )
 }

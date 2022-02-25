@@ -21,13 +21,11 @@ export const NewAreaForm = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         let token = localStorage.getItem('token')
-        console.log(state.area, state.name)
-        const res = await createArea(state.area, state.name, token)
+        const res = await createArea(area, state.name, token)
         const errorList = []
         if (res.data) {
-            console.log(res.data.areas)
             dispatch({type: 'add_area', payload: res.data.areas}) 
-        props.setShowPanel(false)
+            document.querySelector(".pop-up").style.display = "none";
         }
         else 
         console.log(res)

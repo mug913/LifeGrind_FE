@@ -1,11 +1,12 @@
 import React, {useContext,useState} from 'react'
 import {NewAreaForm} from './NewAreaForm'
 import { PopUpContext } from '../contexts/PopUpContext';
+import { PopUpLoad } from './PopUp';
 
 export const AreaLog = (props) => {
     
     const {popUpDispatch} = useContext(PopUpContext);  
-    const [showPanel, setShowPanel] = useState(false)
+    const [showPanel] = useState(false)
     const logRecord = [`Name: ${props.area.name}`,<br/>,
                         `Streak: ${props.area.streak}`,<br/>,
                        `Level: ${props.area.level}`,<br/>,
@@ -15,11 +16,8 @@ export const AreaLog = (props) => {
        
     const AreaButtonClick = (e) =>{
         e.preventDefault()
-        document.querySelector(".pop-up").style.display = "none";
-        document.querySelector(".pop-up").style.gridArea = `area${props.area.position}`;
-        popUpDispatch({type: 'replace', payload: panelContent})
-        document.querySelector(".pop-up").style.display = "block";
-    }
+        PopUpLoad(props.area.position, popUpDispatch, panelContent)
+     }
 
     const areaButton = <button onClick={AreaButtonClick}> {props.area.name ? props.area.name : "Create New Area"} </button>
 

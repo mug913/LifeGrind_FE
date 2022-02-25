@@ -4,7 +4,7 @@ import { UserContext } from '../contexts/UserContext';
 import {Alert} from 'react-bootstrap'
 
 export function SignIn() {
-    const {user,dispatch} = useContext(UserContext);
+    const {dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         email: '',
         password: '',

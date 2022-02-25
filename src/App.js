@@ -11,12 +11,14 @@ const App = () => {
   
   return (
     <div className="App">
+      <div className="BackGround">
       <UserContextProvider>
         <PopUpContextProvider>
         <UserPage /> 
         <LoginPage/>
         </PopUpContextProvider>
       </UserContextProvider>
+      </div>
     </div>
     );
 }

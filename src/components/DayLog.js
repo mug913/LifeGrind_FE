@@ -1,22 +1,17 @@
-import React, {useContext,useState} from 'react'
+import React, {useContext} from 'react'
 import {DayAreaForm} from './DayAreaForm'
 import { PopUpContext } from '../contexts/PopUpContext';
+import { PopUpLoad } from './PopUp';
 
 export const DayLog = (props) => {
 const {popUpDispatch} = useContext(PopUpContext);  
-const [showPanel, setShowPanel] = useState(false)
 const currentDateButton = new Date().toDateString()
 const panelContent = <DayAreaForm  />
-const panel = showPanel ? "block" : "none"
 
 const DayButtonClick = (e) =>{
     e.preventDefault()
-    document.querySelector(".pop-up").style.display = "none";
-    document.querySelector(".pop-up").style.gridArea = `area${props.area.position}`;
-    popUpDispatch({type: 'replace', payload: panelContent})
-    document.querySelector(".pop-up").style.display = "block";
-    // setShowPanel(!(showPanel))
-    // document.querySelector(".pop-up").style.display = panel;
+    //clear any current open PopUp, perform content switch, reveal PopUp
+    PopUpLoad(props.area.position, popUpDispatch, panelContent)
 }
 
 const dayButton = <button onClick={DayButtonClick}> {currentDateButton} </button>

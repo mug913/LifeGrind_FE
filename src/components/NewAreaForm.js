@@ -6,7 +6,7 @@ import {Alert} from 'react-bootstrap'
 export const NewAreaForm = (props) => {
 
     const area = props.area;
-    const {user,dispatch} = useContext(UserContext);
+    const {dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         name:'',
         area,
@@ -22,7 +22,6 @@ export const NewAreaForm = (props) => {
         e.preventDefault()
         let token = localStorage.getItem('token')
         const res = await createArea(area, state.name, token)
-        const errorList = []
         if (res.data) {
             dispatch({type: 'add_area', payload: res.data.areas}) 
             document.querySelector(".pop-up").style.display = "none";

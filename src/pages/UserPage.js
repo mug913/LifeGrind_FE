@@ -1,4 +1,4 @@
-import React, {useContext, useLayoutEffect}  from 'react'
+import React, {useRef, useContext, useLayoutEffect}  from 'react'
 import { Logout } from '../components/Logout'
 import {DayLog} from '../components/DayLog'
 import { AreaLog } from '../components/AreaLog';
@@ -9,6 +9,7 @@ import axios from 'axios';
 
 export const UserPage = () => {
 
+  const hasChecked = useRef(false) 
   const {user,dispatch} = useContext(UserContext);
   const {popUpContent} = useContext(PopUpContext);
   const dayArea =  user.attributes.areas[0] ?? [{position: 0}]
@@ -17,7 +18,7 @@ export const UserPage = () => {
     // check for presence of valid JWT and if so request user data from backend on. 
     useLayoutEffect(() =>{
     let token = localStorage.getItem('token')
-    if(token){
+    if(!hasChecked.current && token){
       axios.get(`${process.env.REACT_APP_API}/profile`, {
         method: "GET",
         headers: {
@@ -28,31 +29,29 @@ export const UserPage = () => {
         if(!result.data.error){
         localStorage.setItem('token', result.data.token)
         dispatch({type: 'add', payload: result.data.user.data})
+        hasChecked.current = true;
         }
         else{
-        //alert(result.data.error)
         localStorage.clear();}
       })
     }
-   },[]) 
+   }) 
 
 
     return (
       <div >
           {user.id && <div>
           <h2>Welcome {user.attributes.username}</h2> 
-          <div class="log-area">
-            <DayLog area={dayArea} />
-            {activeAreas.map(area =>(
-            <AreaLog area={area}/>
-            ))}
-              <div className="pop-up">
-            <PopUp content={popUpContent}/>
-          </div>
-          <Logout/> 
-          </div>
-         
-        
+            <div class="log-area">
+              <DayLog area={dayArea} />
+              {activeAreas.map(area =>(
+              <AreaLog area={area}/>
+              ))}
+                <div className="pop-up">
+                  <PopUp content={popUpContent}/>
+                </div>
+              <Logout/> 
+            </div>
           </div>}
       </div>
     )

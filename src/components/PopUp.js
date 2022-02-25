@@ -1,4 +1,13 @@
 import React from 'react'
+
+export const PopUpLoad = (area, popUpDispatch, panelContent) =>{
+    const modal = document.querySelector(".pop-up")
+    modal.style.display = "none";
+    modal.style.gridArea = `area${area}`;
+    popUpDispatch({type: 'replace', payload: panelContent})
+    modal.style.display = "block";
+}
+
 export const PopUp = (props) => {
 
     const closeBtnClick = (e) =>{
@@ -15,3 +24,5 @@ export const PopUp = (props) => {
         </div>
     )
 }
+
+export default PopUp;

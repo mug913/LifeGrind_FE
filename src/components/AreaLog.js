@@ -10,14 +10,14 @@ export const AreaLog = (props) => {
                         `Streak: ${props.area.streak}`,<br/>,
                        `Level: ${props.area.level}`,<br/>,
                        `Last Update: ${props.area.updated_at}`]
-    const panelContent = props.area.name ? logRecord : <NewAreaForm setShowPanel={setShowPanel} area={props.area}/>
+    const panelContent = props.area.name ? logRecord : <NewAreaForm area={props.area}/>
     const panel = showPanel ? panelContent : null
        
     const AreaButtonClick = (e) =>{
         e.preventDefault()
         document.querySelector(".pop-up").style.display = "none";
         document.querySelector(".pop-up").style.gridArea = `area${props.area.position}`;
-        popUpDispatch({type: 'replace', payload: logRecord})
+        popUpDispatch({type: 'replace', payload: panelContent})
         document.querySelector(".pop-up").style.display = "block";
     }
 

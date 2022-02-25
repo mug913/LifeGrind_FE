@@ -6,6 +6,7 @@ form input{
   margin: 0.5rem;
 }
 
+ /*Registration and Login Forms*/
 .splash_form {
   margin: 5rem auto;
   display: flex;
@@ -17,11 +18,11 @@ form input{
   background-color: grey;
 }
 
-
+/*Grid for log area layouts on user page*/
 .log-area {  
   display: grid;
   position: flex;  
-  grid-template-columns: repeat(3, 200px);
+  grid-template-columns: repeat(3, 300px);
   grid-template-rows: repeat(12,100px);;
   grid-template-areas: 
     ". area1 ."
@@ -32,7 +33,7 @@ form input{
     ". area6 ."
      ". foot ."
     ". foot .";
-  column-gap: 1em; 
+  column-gap: 14em; 
   text-align: center;
   align-items: center;  
   justify-content: center;
@@ -83,6 +84,7 @@ form input{
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);
  }
 
+ /*pop up display from area buttons*/
  .pop-up {
    position: relative;
   display: none;

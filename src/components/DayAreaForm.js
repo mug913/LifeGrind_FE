@@ -21,6 +21,7 @@ export const DayAreaForm = (props) => {
       
     const handleSubmit = async (e) =>{
         e.preventDefault()
+        console.log("submit button")
         let token = localStorage.getItem('token')
         const res = await createSubArea(area, state.name, token)
         if (res.data) {
@@ -35,13 +36,14 @@ export const DayAreaForm = (props) => {
     return(
         <div>
             {area.subareas.map(subarea=> (
+                <div> {subarea.name} </div>))}
             <form onSubmit={handleSubmit}>
                 <label>SubArea Name :</label>
                 <input name="name" value={state.name} onChange={handleChange} />
                 {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
                 <input type='Submit' value='Create' readOnly/>
                 {state.errors.length > 0 && <Alert varient="danger">{state.errors}</Alert>}
-            </form>))}
+            </form>
         </div>
     )
 }

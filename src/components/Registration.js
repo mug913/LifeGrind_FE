@@ -26,7 +26,7 @@ export function Registration() {
             res.data.error.map((error) => errorList.push(<div key={error.index}>{error}</div>))
             setState({...state, errors: errorList})}
         else {
-            dispatch({type: 'add', payload:  res.data.user.data}) 
+            dispatch({type: 'add', payload:  res.data.user}) 
         }
     }
 

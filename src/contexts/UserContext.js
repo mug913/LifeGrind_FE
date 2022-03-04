@@ -6,9 +6,7 @@ export const UserContext = createContext();
 export const userInitialState = {
         name: '', 
         id: false,
-        attributes: {
-            areas: [{position: '0'}]
-        }
+        areas: [{position: '0'}]
     }
 
 const UserContextProvider = (props) => {

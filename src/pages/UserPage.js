@@ -12,8 +12,8 @@ export const UserPage = () => {
   const hasChecked = useRef(false) 
   const {user,dispatch} = useContext(UserContext);
   const {popUpContent} = useContext(PopUpContext);
-  const dayArea =  user.attributes.areas[0] ?? [{position: 0}]
-  const activeAreas =  user.attributes.areas.slice(1, user.attributes.areas.length)
+  const dayArea =  user.areas[0] ?? [{position: 0}]
+  const activeAreas =  user.areas.slice(1, user.areas.length)
 
     // check for presence of valid JWT and if so request user data from backend on. 
     useLayoutEffect(() =>{
@@ -28,7 +28,7 @@ export const UserPage = () => {
       .then(result => {
         if(!result.data.error){
         localStorage.setItem('token', result.data.token)
-        dispatch({type: 'add', payload: result.data.user.data})
+        dispatch({type: 'add', payload: result.data.user})
         hasChecked.current = true;
         }
         else{
@@ -41,7 +41,7 @@ export const UserPage = () => {
     return (
       <div >
           {user.id && <div>
-          <h2>Welcome {user.attributes.username}</h2> 
+          <h2>Welcome {user.username}</h2> 
             <div class="log-area">
               <DayLog area={dayArea} />
               {activeAreas.map(area =>(

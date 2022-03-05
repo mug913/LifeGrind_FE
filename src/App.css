@@ -8,7 +8,7 @@ form input{
 
  /*Registration and Login Forms*/
 .splash_form {
-  margin: 5rem auto;
+  margin: 2rem auto;
   display: flex;
   align-items: center;
   flex-direction: column;

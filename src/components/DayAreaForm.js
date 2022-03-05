@@ -10,6 +10,7 @@ export const DayAreaForm = (props) => {
     const {dispatch} = useContext(UserContext);
     const [state, setState] = useState({
         name:'',
+        details: 'rating',
         area,
         errors: []
     })
@@ -22,7 +23,7 @@ export const DayAreaForm = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         let token = localStorage.getItem('token')
-        let options = {name: state.name}
+        let options = {name: state.name, details: state.details}
          const res = await createSubArea(area, options, token)
         if (res) {
             dispatch({type: 'add_day_area_sub', payload: res.data, area_pos: area.position})
@@ -31,6 +32,11 @@ export const DayAreaForm = (props) => {
         console.log(res)
     }
 
+    const radioChange = (e) => {
+        console.log(state.details)
+        setState({...state,details: e.target.value
+        })
+    }
 
 
     return(
@@ -38,8 +44,14 @@ export const DayAreaForm = (props) => {
             {area.subareas.map(subarea=> (
                 <div> {subarea.name} </div>))}
             <form onSubmit={handleSubmit}>
-                <label>SubArea Name :</label>
+                <label>Daily Record:</label>
                 <input name="name" value={state.name} onChange={handleChange} />
+                <div onChange={radioChange}>
+                <label>Type :</label>
+                <input type="radio" value="rating" name="details" defaultChecked /> Rating
+                <input type="radio" value="metric" name="details"/> Metric
+                <input type="radio" value="span" name="details"/> Span
+                </div>
                 {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
                 <input type='Submit' value='Create' readOnly/>
                 {state.errors.length > 0 && <Alert varient="danger">{state.errors}</Alert>}

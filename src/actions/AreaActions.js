@@ -19,7 +19,7 @@ await axios.get(`${process.env.REACT_APP_API}/areas/${area.id}/edit`, {
 export const createSubArea = async (area, options, token) => 
 await axios.post(`${process.env.REACT_APP_API}/subareas`, 
       {options: options,
-      area: area.id}, 
+      area: area}, 
       {headers: {"Authorization": `token ${token}`}}
       )
       .then(res => {

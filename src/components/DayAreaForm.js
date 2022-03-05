@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { UserContext } from '../contexts/UserContext'
-import { createSubArea } from '../actions/AreaActions'
+import { createSubArea, deleteSubArea } from '../actions/AreaActions'
 import {Alert} from 'react-bootstrap'
 
 
@@ -8,7 +8,7 @@ export const DayAreaForm = (props) => {
     
     const area = props.area;
     const {dispatch} = useContext(UserContext);
-    const [showMenu,setShowMenu] = useState(true)
+    const [showMenu,setShowMenu] = useState(false)
     const [state, setState] = useState({
         name:'',
         details: 'rating',
@@ -29,16 +29,32 @@ export const DayAreaForm = (props) => {
                                 <input type="radio" value="span" name="details"/> Span
                             </div>
                             {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
-                            <input type='Submit' value='Create' readOnly/>
+                            <input type='Submit' value='Create' readOnly/>  <input type='Submit' onClick={handleSubareaCreate} value='Close' readOnly/>
                             {state.errors.length > 0 && <Alert varient="danger">{state.errors}</Alert>}
                             </form>
-                            }</div>)}
+                            }</div>)
+    }   
+
+  
     
   
     const handleSubareaCreate = (e) => {
         e.preventDefault()
-        console.log(menu)
+        setState({...state, name: ''})
         setShowMenu(!showMenu)
+    }
+
+    const handleSubareaDelete = async (e,subarea) => {
+        e.preventDefault()
+        let token = localStorage.getItem('token')
+        let target_subarea = subarea.id
+        const res = await deleteSubArea(target_subarea, token)
+        if (res) {
+            dispatch({type: 'refresh_day_area_sub', payload: res.data, area_pos: area.position})
+        }
+        else {
+            console.log(res)
+        }
     }
 
     const handleChange = (e) => {
@@ -52,7 +68,9 @@ export const DayAreaForm = (props) => {
         let options = {name: state.name, details: state.details}
          const res = await createSubArea(area, options, token)
         if (res) {
-            dispatch({type: 'add_day_area_sub', payload: res.data, area_pos: area.position})
+            dispatch({type: 'refresh_day_area_sub', payload: res.data, area_pos: area.position})
+            setState({...state, name: ''})
+            setShowMenu(!showMenu)
         }
         else 
         console.log(res)
@@ -69,7 +87,7 @@ export const DayAreaForm = (props) => {
     const subareaList = (area) => {
         if (!!area.subareas) {
             return  (area.subareas.map(subarea=> (
-                <div> {subarea.name} </div>)))
+                 <div> <button onClick={(e) => {handleSubareaDelete(e,subarea)}}>Remove</button> {subarea.name} </div>)))
         }
     }
 

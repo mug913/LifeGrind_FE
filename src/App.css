@@ -23,7 +23,7 @@ form input{
   display: grid;
   position: flex;  
   grid-template-columns: repeat(3, 300px);
-  grid-template-rows: repeat(12,100px);;
+  grid-template-rows: repeat(12,75px);;
   grid-template-areas: 
     ". area1 ."
     "area2 area1 area3"

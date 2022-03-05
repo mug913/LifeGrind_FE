@@ -22,7 +22,7 @@ export const UserPage = () => {
       axios.get(`${process.env.REACT_APP_API}/profile`, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`
+          "Authorization": `token ${token}`
         }
       })
       .then(result => {

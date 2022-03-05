@@ -16,19 +16,21 @@ await axios.get(`${process.env.REACT_APP_API}/areas/${area.id}/edit`, {
         }
       })
 
-export const createSubArea = async (area, name, token) => 
-await axios.get(`${process.env.REACT_APP_API}/areas/${area.id}/edit`, {
-      params: {name: name}, 
-      headers: {"Authorization": `token ${token}`}
-      })
+export const createSubArea = async (area, options, token) => 
+await axios.post(`${process.env.REACT_APP_API}/subareas`, 
+      {options: options,
+      area: area.id}, 
+      {headers: {"Authorization": `token ${token}`}}
+      )
       .then(res => {
-        if (res.data.status === 422) {
-          return (res)          }
+        if (res.status === 200) {
+          return (res.data)          }
         }).catch(function (error){
         if (!error.response) {
           return ({data:{status: 'null', error: ['Error: Network Connection Unavailable']}})}
         else {
-          return(error.response.data)
+          let res = {data: error.response.data}
+          return(res)
         }
       })
       

@@ -21,11 +21,11 @@ export const DayAreaForm = (props) => {
       
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        console.log("submit button")
         let token = localStorage.getItem('token')
-        const res = await createSubArea(area, state.name, token)
-        if (res.data) {
-            dispatch({type: 'add_area_sub', payload: res.data.areas}) 
+        let options = {name: state.name}
+         const res = await createSubArea(area, options, token)
+        if (res) {
+            dispatch({type: 'add_day_area_sub', payload: res.data, area_pos: area.position})
         }
         else 
         console.log(res)

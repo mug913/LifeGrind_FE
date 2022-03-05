@@ -3,6 +3,8 @@
       switch(action.type){
         case 'replace':
             return action.payload
+        case 'clear':
+            return null
         default:
           return popUpContent
       }

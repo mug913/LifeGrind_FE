@@ -6,7 +6,7 @@ import { PopUpLoad } from './PopUp';
 export const DayLog = (props) => {
 const {popUpDispatch} = useContext(PopUpContext);  
 const currentDateButton = new Date().toDateString()
-const panelContent = <DayAreaForm  area={props.area}/>
+const panelContent = <DayAreaForm  area={props.area} />
 
 const DayButtonClick = (e) =>{
     e.preventDefault()

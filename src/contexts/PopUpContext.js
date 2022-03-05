@@ -3,8 +3,7 @@ import {popUpReducer} from '../reducers/PopUpReducer';
 
 export const PopUpContext = createContext();
 
-export const popUpInitialState = "Hi"
-
+export const popUpInitialState = null
 
 const PopUpContextProvider = (props) => {
     const [popUpContent, popUpDispatch] = useReducer(popUpReducer, popUpInitialState)

@@ -44,6 +44,11 @@ export const DayAreaForm = (props) => {
         setShowMenu(!showMenu)
     }
 
+    const handleSubareaDetails = (e) => {
+
+
+    }
+    
     const handleSubareaDelete = async (e,subarea) => {
         e.preventDefault()
         let token = localStorage.getItem('token')
@@ -87,7 +92,9 @@ export const DayAreaForm = (props) => {
     const subareaList = (area) => {
         if (!!area.subareas) {
             return  (area.subareas.map(subarea=> (
-                 <div> <button onClick={(e) => {handleSubareaDelete(e,subarea)}}>Remove</button> {subarea.name} </div>)))
+                 <div> <button onClick={(e) => {handleSubareaDelete(e,subarea)}}>Remove</button>
+                 {subarea.name} 
+                 </div>)))
         }
     }
 
@@ -98,6 +105,9 @@ export const DayAreaForm = (props) => {
                 return  (
                 <div> {<input onClick={handleSubareaCreate} type='Submit' value='Create' readOnly/>} </div>)
         }
+        else
+            return  (
+            <div> {<input onClick={handleSubareaCreate} type='Submit' value='Create' readOnly/>} </div>)
     }
 
     return(

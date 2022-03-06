@@ -13,20 +13,29 @@ export const DayAreaForm = (props) => {
         name:'',
         details: 'rating',
         area,
-        errors: []
+        errors: [],
+        event: {
+            detail_1: null,
+            detail_2: null,
+            detail_3: null
+        }
     })
     
    
     const menu = () => {if (showMenu) return(
                             <div>{
                             <form onSubmit={handleSubmit}>
-                            <label>Daily Record:</label>
+                            <label>Record Title:</label>
                             <input name="name" value={state.name} onChange={handleChange} />
                             <div onChange={radioChange}>
                                 <label>Type :</label>
                                 <input type="radio" value="rating" name="details" defaultChecked /> Rating
                                 <input type="radio" value="metric" name="details"/> Metric
                                 <input type="radio" value="span" name="details"/> Span
+                                <input type="radio" value="note" name="details"/> Note
+                            </div>
+                            <div>
+                                {newEventForm()}
                             </div>
                             {state.error ? <p style={{ color: 'red'}}>{state.error}</p> :null}
                             <input type='Submit' value='Create' readOnly/>  <input type='Submit' onClick={handleSubareaCreate} value='Close' readOnly/>
@@ -35,7 +44,41 @@ export const DayAreaForm = (props) => {
                             }</div>)
     }   
 
-  
+    const newEventForm = () => {
+        switch(state.details){
+            case 'rating':
+              return (
+              <div>
+                <label>Lower Limit:</label>
+                <input type='number' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <label>High Limit:</label>
+                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+                <label>Today's Rating:</label>
+                <input type='number' name="detail_3" value={state.event.detail_3} onChange={handleChange} /><br/>
+              </div>)
+            case 'metric':
+              return ( <div>
+                <label>Units:</label>
+                <input type='text' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <label>Today's Value:</label>
+                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+              </div>)
+            case 'span':
+             return (    <div>
+                <label>Start Time:</label>
+                <input type='time' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <label>Finish Time:</label>
+                <input type='time' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+              </div>)
+              case 'note': 
+                return (    <div>
+                    <label>Note:</label>
+                    <input type='text' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                  </div>)
+              default:
+              return ('rating')
+        }
+    }
     
   
     const handleSubareaCreate = (e) => {
@@ -43,6 +86,7 @@ export const DayAreaForm = (props) => {
         setState({...state, name: ''})
         setShowMenu(!showMenu)
     }
+
 
     const handleSubareaDelete = async (e,subarea) => {
         e.preventDefault()
@@ -78,8 +122,11 @@ export const DayAreaForm = (props) => {
 
     //manage radio menu for new subarea type
     const radioChange = (e) => {
-        console.log(state.details)
-        setState({...state,details: e.target.value
+        setState({...state,details: e.target.value,event: {
+            detail_1: null,
+            detail_2: null,
+            detail_3: null
+        }
         })
     }
 
@@ -87,7 +134,9 @@ export const DayAreaForm = (props) => {
     const subareaList = (area) => {
         if (!!area.subareas) {
             return  (area.subareas.map(subarea=> (
-                 <div> <button onClick={(e) => {handleSubareaDelete(e,subarea)}}>Remove</button> {subarea.name} </div>)))
+                 <div> <button onClick={(e) => {handleSubareaDelete(e,subarea)}}>Remove</button>
+                 {subarea.name} 
+                 </div>)))
         }
     }
 
@@ -98,6 +147,9 @@ export const DayAreaForm = (props) => {
                 return  (
                 <div> {<input onClick={handleSubareaCreate} type='Submit' value='Create' readOnly/>} </div>)
         }
+        else
+            return  (
+            <div> {<input onClick={handleSubareaCreate} type='Submit' value='Create' readOnly/>} </div>)
     }
 
     return(

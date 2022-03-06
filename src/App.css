@@ -22,7 +22,7 @@ form input{
 .log-area {  
   display: grid;
   position: flex;  
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(3, 400px);
   grid-template-rows: repeat(12,75px);;
   grid-template-areas: 
     ". area1 ."

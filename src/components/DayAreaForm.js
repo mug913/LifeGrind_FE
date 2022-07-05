@@ -14,11 +14,9 @@ export const DayAreaForm = (props) => {
         details: 'rating',
         area,
         errors: [],
-        event: {
-            detail_1: null,
-            detail_2: null,
-            detail_3: null
-        }
+        detail_1: null,
+        detail_2: null,
+        detail_3: null
     })
     
    
@@ -50,30 +48,30 @@ export const DayAreaForm = (props) => {
               return (
               <div>
                 <label>Lower Limit:</label>
-                <input type='number' name="detail_1" value={state.event.detail_1} onChange={handleChange} min="0"/><br/>
+                <input type='number' name="detail_1" value={state.detail_1} onChange={handleChange} min="0"/><br/>
                 <label>High Limit:</label>
-                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} min={state.event.detail_1} /><br/>
+                <input type='number' name="detail_2" value={state.detail_2} onChange={handleChange} min={state.detail_1} /><br/>
                 <label>Today's Rating:</label>
-                <input type='number' name="detail_3" value={state.event.detail_3} onChange={handleChange} /><br/>
+                <input type='number' name="detail_3" value={state.detail_3} onChange={handleChange} /><br/>
               </div>)
             case 'metric':
               return ( <div>
                 <label>Units:</label>
-                <input type='text' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <input type='text' name="detail_1" value={state.detail_1} onChange={handleChange} /><br/>
                 <label>Today's Value:</label>
-                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+                <input type='number' name="detail_2" value={state.detail_2} onChange={handleChange} /><br/>
               </div>)
             case 'span':
              return (    <div>
                 <label>Start Time:</label>
-                <input type='time' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <input type='time' name="detail_1" value={state.detail_1} onChange={handleChange} /><br/>
                 <label>Finish Time:</label>
-                <input type='time' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+                <input type='time' name="detail_2" value={state.detail_2} onChange={handleChange} /><br/>
               </div>)
               case 'note': 
                 return (    <div>
                     <label>Note:</label>
-                    <input type='text' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                    <input type='text' name="detail_1" value={state.detail_1} onChange={handleChange} /><br/>
                   </div>)
               default:
               return ('rating')
@@ -109,7 +107,7 @@ export const DayAreaForm = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         let token = localStorage.getItem('token')
-        let options = {name: state.name, details: state.details}
+        let options = {name: state.name, details: state.details, detail_1: state.detail_1, detail_2: state.detail_2, detail_3: state.detail_3}
          const res = await createSubArea(area, options, token)
         if (res) {
             dispatch({type: 'refresh_day_area_sub', payload: res.data, area_pos: area.position})

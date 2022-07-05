@@ -10,14 +10,25 @@ import PopUpContextProvider from './contexts/PopUpContext';
 const App = () => {
   
   return (
-    <div className="App">
+    <div>
       <div className="BackGround">
-      <UserContextProvider>
-        <PopUpContextProvider>
-        <UserPage /> 
-        <LoginPage/>
-        </PopUpContextProvider>
-      </UserContextProvider>
+        <div className="bg-0"/>
+        <div className="bg-1"/>
+        <div className="bg-2"/>
+        <div className="bg-3"/>
+        <div className="bg-4"/>
+        <div className="bg-5"/>
+        <div className="bg-6"/>
+        <div className="bg-7"/>
+        <div className="bg-8"/>
+      </div>
+      <div className="App">
+        <UserContextProvider>
+          <PopUpContextProvider>
+            <UserPage /> 
+            <LoginPage/>
+          </PopUpContextProvider>
+        </UserContextProvider>
       </div>
     </div>
     );

@@ -32,7 +32,7 @@ export function Registration() {
 
     
         return (
-            <div className='splash_form'>
+            <div className='RegForm'>
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <label>Username :</label>

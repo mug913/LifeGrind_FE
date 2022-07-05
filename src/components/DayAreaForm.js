@@ -50,9 +50,9 @@ export const DayAreaForm = (props) => {
               return (
               <div>
                 <label>Lower Limit:</label>
-                <input type='number' name="detail_1" value={state.event.detail_1} onChange={handleChange} /><br/>
+                <input type='number' name="detail_1" value={state.event.detail_1} onChange={handleChange} min="0"/><br/>
                 <label>High Limit:</label>
-                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} /><br/>
+                <input type='number' name="detail_2" value={state.event.detail_2} onChange={handleChange} min={state.event.detail_1} /><br/>
                 <label>Today's Rating:</label>
                 <input type='number' name="detail_3" value={state.event.detail_3} onChange={handleChange} /><br/>
               </div>)

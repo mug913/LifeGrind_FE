@@ -29,7 +29,7 @@ export function SignIn() {
      }
 
     return (
-        <div className='splash_form'>
+        <div class="fixed">
             <form onSubmit={handleSubmit}>
                 <h1>Log In</h1>
                 <label>Email :</label>

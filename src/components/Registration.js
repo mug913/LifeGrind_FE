@@ -32,7 +32,7 @@ export function Registration() {
 
     
         return (
-            <div className='RegForm'>
+            <div class="fixed">
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <label>Username :</label>

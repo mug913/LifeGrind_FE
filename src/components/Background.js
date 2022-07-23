@@ -16,7 +16,7 @@ export const Background = () => {
         for (let i=0; i<=8; i++){
         const back = document.querySelector(`.bg-${i}`);
         if(back){
-            back.style.backgroundColor = `rgb(${r-(i*30)},${g-(i*10)},${b-(i*10)})`;}
+            back.style.backgroundColor = `rgb(${r-(i*30)},${g-(i*10)},${b+(i*30)})`;}
         }
         console.log(time+`rgb(${r},${g},${b})`)
     }

@@ -5,24 +5,14 @@ import UserContextProvider from './contexts/UserContext';
 import { LoginPage } from './pages/LoginPage';
 import 'bootstrap/dist/css/bootstrap.css';
 import PopUpContextProvider from './contexts/PopUpContext';
-
+import { Background } from './components/Background';
 
 const App = () => {
   
   return (
     <div>
-      <div className="BackGround">
-        <div className="bg-0"/>
-        <div className="bg-1"/>
-        <div className="bg-2"/>
-        <div className="bg-3"/>
-        <div className="bg-4"/>
-        <div className="bg-5"/>
-        <div className="bg-6"/>
-        <div className="bg-7"/>
-        <div className="bg-8"/>
-      </div>
       <div className="App">
+        <Background/>      
         <UserContextProvider>
           <PopUpContextProvider>
             <UserPage /> 

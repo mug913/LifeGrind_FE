@@ -28,20 +28,18 @@ form input{
 /*Grid for log area layouts on user page*/
 .BackGround {  
   display: grid;
-  position: absolute;
+  position: fixed;
   grid-template-columns: 1(100vw);
-  grid-template-rows: repeat(10, 10vh);
+  grid-template-rows: repeat(8, 12.5vh);
   grid-template-areas: 
     "bg0"
     "bg1"
     "bg2"
     "bg3"
     "bg4"
-    "bg4"
     "bg5"
     "bg6"
-    "bg7"
-    "bg8";
+    "bg7";
     z-index: -99;
  }
 
@@ -108,8 +106,8 @@ form input{
 .log-area {  
   display: grid;
   position: flex;  
-  grid-template-columns: repeat(3, 400px);
-  grid-template-rows: repeat(12,75px);;
+  grid-template-columns: repeat(3, 20vw);
+  grid-template-rows: repeat(12,8vh);;
   grid-template-areas: 
     ". area1 ."
     "area2 area1 area3"

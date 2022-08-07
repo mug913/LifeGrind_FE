@@ -64,7 +64,7 @@ export const Background = () => {
     return(
             <div className="BackGround">
                 {BGGrid.map(row =>(
-              <div class={row} />))}
+              <div key={row} className={row} />))}
             </div>
    )
         

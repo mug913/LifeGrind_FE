@@ -22,14 +22,14 @@ export function SignIn() {
         const res = await signIn(state)
         const errorList = []
         if (res.data.status === 401) {
-            errorList.push(<div>{res.data.error}</div>)
+            errorList.push(<div key="login Error">{res.data.error}</div>)
             setState({...state, errors: errorList})}
         else
         dispatch({type: 'add', payload: res.data.user}) 
      }
 
     return (
-        <div class="fixed">
+        <div className="fixed">
             <form onSubmit={handleSubmit}>
                 <h1>Log In</h1>
                 <label>Email :</label>

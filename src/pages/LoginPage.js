@@ -8,7 +8,7 @@ export const LoginPage = (props) =>{
 
     return (
         <div>
-           {!user.id && <div className='LoginForm' ><SignIn /><div class="fill"/><Registration /></div>}
+           {!user.id && <div className='LoginForm' ><SignIn /><div className="fill"/><Registration /></div>}
         </div>
     )
 }

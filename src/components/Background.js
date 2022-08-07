@@ -1,18 +1,20 @@
 import React, { useLayoutEffect } from 'react';
 export const Background = () => {
 
+    //load rows into an array for display
     const BGGrid = [];
     for (let i=0; i<=8; i++){
         BGGrid.push(`bg-${i}`)};
 
     useLayoutEffect(() => {
         changeColors()
+        //update colors every minute
         setInterval(() => {
             changeColors()
-          }, 6000);
+          }, 60000);
         },[])
 
-
+    //update rgb colors for bg use based on current time/sunrise/sunset
     const changeColors = () => {
         const time = new Date();
         const sunRise = (6*60)+3;
@@ -36,12 +38,12 @@ export const Background = () => {
             //after noon
             case (currentMin >= meridian && currentMin <= sunSet):
                 r = 90+((110/(sunSet-meridian))*(currentMin-meridian));
-                g = 255-(((-255)/(sunSet-meridian))*(currentMin-meridian));
-                b = 255-(((-255)/(sunSet-meridian))*(currentMin-meridian));
+                g = 255-(((255)/(sunSet-meridian))*(currentMin-meridian));
+                b = 255-(((255)/(sunSet-meridian))*(currentMin-meridian));
                 break;
             //after sunset
             case (currentMin >= sunSet):
-                r = 200-(-200/60)*(currentMin-sunSet);
+                r = 200-(200/60)*(currentMin-sunSet);
                 g = 0;
                 b = 0;
                 break;

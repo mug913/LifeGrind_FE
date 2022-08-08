@@ -21,10 +21,21 @@ export const PopUp = (props) => {
         document.querySelector(".pop-up").style.display = "none";
     }
 
+    // const buttonRow = (props) =>{
+    //     console.log(props.content.area.updated_at);
+    //     <div className='pop-up-buttons'>
+    //     <button onClick={closeBtnClick}> Update </button>
+    //     <button onClick={closeBtnClick}> View Records </button>
+    //     <button onClick={closeBtnClick}> X </button>
+    //     </div>
+    // }
+
     return(
         <div className='pop-up-content'>
           {props.content}
-            <div className='close-btn'>
+          <div className='pop-up-buttons'>
+                <button onClick={closeBtnClick}> Update </button>
+                <button onClick={closeBtnClick}> View Records </button>
                 <button onClick={closeBtnClick}> X </button>
             </div>
         </div>

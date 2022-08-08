@@ -12,8 +12,8 @@ export const PopUpLoad = (area, popUpDispatch, panelContent) =>{
 
 
 export const PopUp = (props) => {
-    
-    const {popUpDispatch} = useContext(PopUpContext);  
+
+    const {popUpDispatch} = useContext(PopUpContext);
 
     const closeBtnClick = (e) =>{
         e.preventDefault()
@@ -21,22 +21,28 @@ export const PopUp = (props) => {
         document.querySelector(".pop-up").style.display = "none";
     }
 
-    // const buttonRow = (props) =>{
-    //     console.log(props.content.area.updated_at);
-    //     <div className='pop-up-buttons'>
-    //     <button onClick={closeBtnClick}> Update </button>
-    //     <button onClick={closeBtnClick}> View Records </button>
-    //     <button onClick={closeBtnClick}> X </button>
-    //     </div>
-    // }
+        console.log(props.content);
+        const buttons=<div className='pop-up-buttons'>
+        <button onClick={closeBtnClick}> Update </button>
+        <button onClick={closeBtnClick}> View Records </button>
+        </div>
 
-    return(
-        <div className='pop-up-content'>
-          {props.content}
-          <div className='pop-up-buttons'>
-                <button onClick={closeBtnClick}> Update </button>
-                <button onClick={closeBtnClick}> View Records </button>
-                <button onClick={closeBtnClick}> X </button>
+        let content = ``
+        if(props.content){
+            if(props.content.name){
+            content = `Name: ${props.content.name}\n
+            streak: ${props.content.streak}\n
+            level: ${props.content.level}\n
+            last_Update: ${props.content.last_Update}\n`     
+        }
+        }
+            
+        return(
+        <div className='pop-up-content' key="pop-up">
+          {content.split('\n').map(str => <p>{str}</p>)}
+            <div className='pop-up-buttons'>
+            {buttons}
+            <button onClick={closeBtnClick}> X </button>
             </div>
         </div>
     )

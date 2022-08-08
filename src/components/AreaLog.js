@@ -1,4 +1,4 @@
-import React, {useContext,useState} from 'react'
+import React, {useContext} from 'react'
 import {NewAreaForm} from './NewAreaForm'
 import { PopUpContext } from '../contexts/PopUpContext';
 import { PopUpLoad } from './PopUp';
@@ -6,10 +6,10 @@ import { PopUpLoad } from './PopUp';
 export const AreaLog = (props) => {
 
     const {popUpDispatch} = useContext(PopUpContext);
-    const logRecord = [`Name: ${props.area.name}`,<br/>,
-                        `Streak: ${props.area.streak}`,<br/>,
-                       `Level: ${props.area.level}`,<br/>,
-                       `Last Update: ${props.area.updated_at}`]
+    const logRecord = {name: props.area.name,
+                       streak: props.area.streak,
+                       level: props.area.level,
+                       last_Update: props.area.updated_at}
     const panelContent = props.area.name ? logRecord : <NewAreaForm area={props.area}/>
 
     const AreaButtonClick = (e) =>{

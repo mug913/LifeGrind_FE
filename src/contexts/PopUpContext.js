@@ -10,7 +10,7 @@ const PopUpContextProvider = (props) => {
 
     return (
         <PopUpContext.Provider value={{popUpContent,popUpDispatch}}>
-            {props.children}
+            {props.children} 
         </PopUpContext.Provider>
     );
 }

@@ -19,7 +19,7 @@ const dayButton = <button onClick={DayButtonClick}> {currentDateButton} </button
     return(
         <div className='area-0'>
             {`Record Daily Data Entry:`}
-            <div class='area_content'>
+            <div className='area_content'>
                 {dayButton}
             </div>
         </div>

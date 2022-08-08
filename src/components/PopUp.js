@@ -20,26 +20,26 @@ export const PopUp = (props) => {
         popUpDispatch({type: 'clear'})
         document.querySelector(".pop-up").style.display = "none";
     }
-
-        console.log(props.content);
         const buttons=<div className='pop-up-buttons'>
         <button onClick={closeBtnClick}> Update </button>
         <button onClick={closeBtnClick}> View Records </button>
         </div>
 
-        let content = ``
+        let content = ''
         if(props.content){
             if(props.content.name){
-            content = `Name: ${props.content.name}\n
-            streak: ${props.content.streak}\n
+            let displayContent = 
+            `Name: ${props.content.name}\n
+            streak: ${props.content.streak}
             level: ${props.content.level}\n
             last_Update: ${props.content.last_Update}\n`     
-        }
+            content = displayContent.split('\n').map(str => <p>{str}</p>)
+        }else content = props.content;
         }
             
         return(
         <div className='pop-up-content' key="pop-up">
-          {content.split('\n').map(str => <p>{str}</p>)}
+          {content}
             <div className='pop-up-buttons'>
             {buttons}
             <button onClick={closeBtnClick}> X </button>

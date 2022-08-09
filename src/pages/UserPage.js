@@ -5,7 +5,7 @@ import { AreaLog } from '../components/AreaLog';
 import { UserContext } from '../contexts/UserContext';
 import { PopUpContext } from '../contexts/PopUpContext';
 import { PopUp } from '../components/PopUp';
-import { Timekeeper } from '../components/Timekeeper';
+import { Timekeeper, Yesterday } from '../components/Timekeeper';
 import axios from 'axios';
 
 export const UserPage = () => {
@@ -42,7 +42,7 @@ export const UserPage = () => {
     return (
       <div >
           {user.id && <div>
-          <h2>Welcome {user.username}<Timekeeper/></h2> 
+          <h2>Welcome {user.username}<Timekeeper/><Yesterday/></h2> 
             <div className="log-area">
               <DayLog area={dayArea} />
               {activeAreas.map(area =>(

@@ -21,35 +21,38 @@ export const PopUp = (props) => {
         document.querySelector(".pop-up").style.display = "none";
     }
         const contentButtons=<div className='pop-up-buttons'>
-        <button onClick={closeBtnClick} className="PopUpUpdateButton"> Update </button>
-        <button onClick={closeBtnClick}> View Records </button>
+            <div className = 'pop-up-update-button'>
+                <button onClick={closeBtnClick} className="PopUpUpdateButton"> Update </button>
+            </div>
+            <div className = 'pop-up-records-button'>
+                <button onClick={closeBtnClick}> View Records </button>
+            </div>
         </div>
+
         const closeButton=<div className='pop-up-close-button'>
-        <button onClick={closeBtnClick}> X </button>
+            <button onClick={closeBtnClick}> X </button>
         </div>
 
         if(!!props.content){
-            document.querySelector(`.pop-up-buttons`).style.display = "none";
+            document.querySelector(`.pop-up-records-button`).style.display = "none";
+            document.querySelector(`.pop-up-update-button`).style.display = "none";
         }
     
         let content = ''
         if(props.content){
-            if(props.content.name){
-            document.querySelector(`.pop-up-buttons`).style.display = "block";
-            let displayContent = 
-            `Name: ${props.content.name}\n
-            streak: ${props.content.streak}
-            level: ${props.content.level}\n
-            last_Update: ${props.content.last_Update}\n`     
-            content = displayContent.split('\n').map(str => <p>{str}</p>)
-        }else content = props.content;
+            if(props.content.name){          
+                let displayContent = 
+                    `Name: ${props.content.name}\n
+                    streak: ${props.content.streak}
+                    level: ${props.content.level}\n
+                    last_Update: ${props.content.last_Update}\n`     
+                content = displayContent.split('\n').map(str => <p>{str}</p>)
+                document.querySelector(`.pop-up-records-button`).style.display = "block";
+                if(new Date() >= new Date(props.content.last_Update)){
+                    document.querySelector(`.pop-up-update-button`).style.display = "block";    
+                }
+            }else content = props.content;
         }
-        
-        if(props.content){
-        if(new Date() >= new Date(props.content.last_Update)){
-            console.log("true")
-        }else{ console.log("false")}
-    }
 
         return(
         <div className='pop-up-content' key="pop-up">

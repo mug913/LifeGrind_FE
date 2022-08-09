@@ -20,14 +20,22 @@ export const PopUp = (props) => {
         popUpDispatch({type: 'clear'})
         document.querySelector(".pop-up").style.display = "none";
     }
-        const buttons=<div className='pop-up-buttons'>
+        const contentButtons=<div className='pop-up-buttons'>
         <button onClick={closeBtnClick} className="PopUpUpdateButton"> Update </button>
         <button onClick={closeBtnClick}> View Records </button>
         </div>
+        const closeButton=<div className='pop-up-close-button'>
+        <button onClick={closeBtnClick}> X </button>
+        </div>
 
+        if(!!props.content){
+            document.querySelector(`.pop-up-buttons`).style.display = "none";
+        }
+    
         let content = ''
         if(props.content){
             if(props.content.name){
+            document.querySelector(`.pop-up-buttons`).style.display = "block";
             let displayContent = 
             `Name: ${props.content.name}\n
             streak: ${props.content.streak}
@@ -46,10 +54,8 @@ export const PopUp = (props) => {
         return(
         <div className='pop-up-content' key="pop-up">
           {content}
-            <div className='pop-up-buttons'>
-            {buttons}
-            <button onClick={closeBtnClick}> X </button>
-            </div>
+          {contentButtons}
+          {closeButton}
         </div>
     )
 }

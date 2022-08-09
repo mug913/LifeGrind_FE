@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { PopUpContext } from '../contexts/PopUpContext';
+import { Yesterday } from './Timekeeper';
 
 
 export const PopUpLoad = (area, popUpDispatch, panelContent) =>{
@@ -48,7 +49,7 @@ export const PopUp = (props) => {
                     last_Update: ${props.content.last_Update}\n`     
                 content = displayContent.split('\n').map(str => <p>{str}</p>)
                 document.querySelector(`.pop-up-records-button`).style.display = "block";
-                if(new Date(props.content.last_Update) <= new Date().setDate(Date - 1)){
+                if(new Date(props.content.last_Update) <= Yesterday()){
                     document.querySelector(`.pop-up-update-button`).style.display = "block";    
                 }
             }else content = props.content;

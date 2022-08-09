@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react';
+import { Yesterday } from './Timekeeper';
 export const Background = () => {
 
     //load rows into an array for display
@@ -62,7 +63,7 @@ export const Background = () => {
         else {
             back.style.backgroundColor = `rgb(${r-(i*4)},${g-(i*4)},${b-(i*4)})`;}
         }
-        console.log(currentMin+' '+sunRise+' '+meridian+' '+sunSet+' '+r+' '+g+' '+b)
+        console.log(currentMin+' '+sunRise+' '+meridian+' '+sunSet+' '+r+' '+g+' '+b+`${Yesterday()}`+`${time}`)
     }
 
 

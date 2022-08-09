@@ -48,7 +48,7 @@ export const PopUp = (props) => {
                     last_Update: ${props.content.last_Update}\n`     
                 content = displayContent.split('\n').map(str => <p>{str}</p>)
                 document.querySelector(`.pop-up-records-button`).style.display = "block";
-                if(new Date() >= new Date(props.content.last_Update)){
+                if(new Date(props.content.last_Update) <= new Date().setDate(Date - 1)){
                     document.querySelector(`.pop-up-update-button`).style.display = "block";    
                 }
             }else content = props.content;

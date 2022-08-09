@@ -21,7 +21,7 @@ export const PopUp = (props) => {
         document.querySelector(".pop-up").style.display = "none";
     }
         const buttons=<div className='pop-up-buttons'>
-        <button onClick={closeBtnClick}> Update </button>
+        <button onClick={closeBtnClick} className="PopUpUpdateButton"> Update </button>
         <button onClick={closeBtnClick}> View Records </button>
         </div>
 
@@ -36,7 +36,13 @@ export const PopUp = (props) => {
             content = displayContent.split('\n').map(str => <p>{str}</p>)
         }else content = props.content;
         }
-            
+        
+        if(props.content){
+        if(new Date() >= new Date(props.content.last_Update)){
+            console.log("true")
+        }else{ console.log("false")}
+    }
+
         return(
         <div className='pop-up-content' key="pop-up">
           {content}

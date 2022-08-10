@@ -1,17 +1,16 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 export const Timekeeper = () => {
+    const [state, setState] = useState({time: new Date()});
 
-    let time = new Date();
-   useLayoutEffect(() => {
-        time = new Date();
-        const interval = setInterval(() => {}, 60000);
-        return () => clearInterval(interval)
+      useEffect(() => {
+        const timekeeper_interval = setInterval(() => {setState({time:new Date()})},1000)
+        return () => clearInterval(timekeeper_interval)
         },[])
 
         return(
-            <div>
+            <div className="UserClock">
                 <h2>
-                {time.toLocaleTimeString()}
+                {state.time.toLocaleTimeString()}
                 </h2>
             </div>
         )

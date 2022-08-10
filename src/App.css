@@ -6,7 +6,7 @@ form input{
  .LoginForm {
   margin: auto; 
   display: flex;
-  position: fixed;
+  /* position: fixed; */
   align-items: center;
   flex-direction: column;
   top: 5vh;

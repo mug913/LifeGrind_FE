@@ -6,15 +6,16 @@ import { PopUpLoad } from './PopUp';
 export const AreaLog = (props) => {
 
     const {popUpDispatch} = useContext(PopUpContext);
-    const logRecord = {name: props.area.name,
-                       streak: props.area.streak,
-                       level: props.area.level,
-                       last_Update: props.area.updated_at}
+    const logRecord = { area_id: props.area,
+                        name: props.area.name,
+                        streak: props.area.streak,
+                        level: props.area.level,
+                        last_Update: props.area.updated_at}
     const panelContent = props.area.name ? logRecord : <NewAreaForm area={props.area}/>
 
     const AreaButtonClick = (e) =>{
         e.preventDefault()
-        PopUpLoad(props.area.position, popUpDispatch, panelContent)
+            PopUpLoad(props.area.position, popUpDispatch, panelContent)
      }
 
     const areaButton = <button onClick={AreaButtonClick}> {props.area.name ? props.area.name : "Create New Area"} </button>

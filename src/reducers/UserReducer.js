@@ -14,14 +14,23 @@ export const userReducer = (user,action) => {
            areas: action.payload
         }
         case 'refresh_day_area_sub': {
-          const targetArea = user.areas.findIndex(area => area.position === action.area_pos)
+          const targetAreaIndex = user.areas.findIndex(area => area.position === action.area_pos)
           const newAreas = [...user.areas]
-          newAreas[targetArea].subareas = action.payload
+          newAreas[targetAreaIndex].subareas = action.payload
+          return {
+            ...user,
+           areas: newAreas
+            }
+          }
+        case 'refresh_area' : {
+          const targetAreaIndex = user.areas.findIndex(area => area.position === action.area_pos)
+          const newAreas = [...user.areas]
+          newAreas[targetAreaIndex].subareas[0].records = action.payload
           return {
             ...user,
             areas: newAreas
             }
-          }
+        }
         default:
         return user
     }

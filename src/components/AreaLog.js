@@ -6,11 +6,19 @@ import { PopUpLoad } from './PopUp';
 export const AreaLog = (props) => {
 
     const {popUpDispatch} = useContext(PopUpContext);
-    const logRecord = { area_id: props.area,
+    
+    //build area log content to dispay
+    const logRecord = { area: props.area,
                         name: props.area.name,
                         streak: props.area.streak,
                         level: props.area.level,
-                        last_Update: props.area.updated_at}
+                        last_Update: props.area.created_at}
+    //as long as records exist set last_Update to the most recent
+    if (props.area.subareas[0])
+    {
+        logRecord.last_Update = props.area.subareas[0].records.slice(-1)[0].created_at
+    }
+    // if panel not yet named, pass the new area button instead of the record
     const panelContent = props.area.name ? logRecord : <NewAreaForm area={props.area}/>
 
     const AreaButtonClick = (e) =>{

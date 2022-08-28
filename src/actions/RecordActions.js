@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-export const createAreaRecord = async (area, options, token) => {
+export const createAreaRecord = async (area, options, token) => 
 await axios.post(`${process.env.REACT_APP_API}/records`, 
       {options: options,
-      area: area,
-      record: 1}, 
+      area: area
+      }, 
       {headers: {"Authorization": `token ${token}`}}
       )
       .then(res => {
         if (res.status === 200) {
+            console.log(res.data)
           return (res.data)          }
         }).catch(function (error){
         if (!error.response) {
@@ -18,4 +19,3 @@ await axios.post(`${process.env.REACT_APP_API}/records`,
           return(res)
         }
       })
-}

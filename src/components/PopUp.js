@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { PopUpContext } from '../contexts/PopUpContext';
 import { Yesterday } from './Timekeeper';
 import { createAreaRecord } from '../actions/RecordActions';
-
+import { AreaRecordForm } from './AreaRecordForm';
 
 export const PopUpLoad = (area, popUpDispatch, panelContent) =>{
     const modal = document.querySelector(".pop-up")
@@ -17,37 +17,16 @@ export const PopUp = (props) => {
 
     const {popUpDispatch} = useContext(PopUpContext);
     
-    const updateClick = async (e) =>{
-        e.preventDefault()
-        let options = {};
-        let token = localStorage.getItem('token')
-        console.log(props.content.area_id)
-        const res = await createAreaRecord(props.content.area_id, options, token)
-        if (res) {
-            // dispatch({type: 'refresh_day_area_sub', payload: res.data, area_pos: area.position})
-            // setState({...state, name: ''})
-            // setShowMenu(!showMenu)
-            popUpDispatch({type: 'clear'})
-            document.querySelector(".pop-up").style.display = "none";
-        }
-        else {
-        console.log(res)
-        popUpDispatch({type: 'clear'})
-        document.querySelector(".pop-up").style.display = "none";
-        }
-    }
-
     const closeBtnClick = (e) =>{
         e.preventDefault()
         popUpDispatch({type: 'clear'})
         document.querySelector(".pop-up").style.display = "none";
     }
+    /*Record viewing functionality to be added */
         const contentButtons=<div className='pop-up-buttons'>
-            <div className = 'pop-up-update-button'>
-                <button onClick={updateClick} className="PopUpUpdateButton"> Update </button>
-            </div>
+            <AreaRecordForm content={props.content} />
             <div className = 'pop-up-records-button'>
-                <button onClick={closeBtnClick}> View Records </button>
+                <button /*onClick={closeBtnClick}*/> View Records </button>
             </div>
         </div>
 
@@ -70,9 +49,10 @@ export const PopUp = (props) => {
                     last_Update: ${props.content.last_Update}\n`     
                 content = displayContent.split('\n').map(str => <p>{str}</p>)
                 document.querySelector(`.pop-up-records-button`).style.display = "block";
-                // if(new Date(props.content.last_Update) <= Yesterday()){
+                //only allow Area updates once ever 24 hours
+                if(new Date(props.content.last_Update) <= Yesterday()){
                     document.querySelector(`.pop-up-update-button`).style.display = "block";    
-                // }
+                }
             }else content = props.content;
         }
 

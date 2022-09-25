@@ -65,9 +65,9 @@ export const NewAreaForm = (props) => {
                 <label>Units:</label>
                 <input type='text' name="detail_1" value={state.detail_1} onChange={handleChange} defaultValue={'ex: pages'} /><br/>
                 <label>Target Trend?:</label>
-                <input type="radio" value='true' name="detail_2" defaultValue={'true'} onChange={handleChange} defaultChecked/> Up
-                <input type="radio" value='false' name="detail_2" onChange={handleChange}/> None
-                <input type="radio" value='false' name="detail_2" onChange={handleChange}/> Down<br/>
+                <input type="radio" value='up' name="detail_2" defaultValue={'true'} onChange={handleChange} defaultChecked/> Up
+                <input type="radio" value='none' name="detail_2" onChange={handleChange}/> None
+                <input type="radio" value='down' name="detail_2" onChange={handleChange}/> Down<br/>
                 <label>Today's Value:</label>
                 <input type='number' name="detail_3" value={state.detail_3} onChange={handleChange} min='0' max='9999'/><br/>
               </div>)

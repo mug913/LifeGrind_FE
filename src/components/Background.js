@@ -1,5 +1,7 @@
 import React, { useLayoutEffect } from 'react';
-import { Yesterday } from './Timekeeper';
+import { sunCheck } from '../actions/TimeActions';
+
+//element for managing the shifting color background to be tied to to users sunrise/sunset times.
 export const Background = () => {
 
     //load rows into an array for display
@@ -7,8 +9,30 @@ export const Background = () => {
     for (let i=0; i<=8; i++){
         BGGrid.push(`bg-${i}`)};
 
+
+    //load sunrise/set times based off user position
+    const sunUpdate = async () => {
+        navigator.geolocation.getCurrentPosition(
+            function(pos) { 
+                const userPos = pos.coords;
+                console.log(userPos)}, 
+            function(error) {
+                console.error("Error Code = " + error.code + " - " + error.message);
+        })
+        //const res = await sunCheck(userPos.longitude,userPos.latitude)
+       // console.log(position)
+       //     dispatch({type: 'add', payload: res.data.user}) 
+    }
+    
     useLayoutEffect(() => {
         changeColors()
+        //see if geoloaction is available
+        if ("geolocation" in navigator) {
+            console.log("Available");
+            sunUpdate()
+        } else {
+            console.log("Not Available");
+        }
         //update colors every minute
         const interval = setInterval(() => {
             changeColors()
@@ -63,7 +87,7 @@ export const Background = () => {
         else {
             back.style.backgroundColor = `rgb(${r-(i*4)},${g-(i*4)},${b-(i*4)})`;}
         }
-        console.log(currentMin+' '+sunRise+' '+meridian+' '+sunSet+' '+r+' '+g+' '+b+`${Yesterday()}`+`${time}`)
+        console.log(currentMin+' '+sunRise+' '+meridian+' '+sunSet+' '+r+' '+g+' '+b+`${time}`)
     }
 
 

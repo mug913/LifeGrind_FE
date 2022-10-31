@@ -1,5 +1,5 @@
 import { userInitialState } from "../contexts/UserContext"
-
+//reducer for handling user state actions.
 export const userReducer = (user,action) => {
     switch(action.type){
       case 'add':

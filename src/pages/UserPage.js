@@ -8,6 +8,7 @@ import { PopUp } from '../components/PopUp';
 import { Timekeeper} from '../components/Timekeeper';
 import axios from 'axios';
 
+//present User page if logged in.
 export const UserPage = () => {
 
   const hasChecked = useRef(false) 
@@ -16,7 +17,7 @@ export const UserPage = () => {
   const dayArea =  user.areas[0] ?? [{position: 0}]
   const activeAreas =  user.areas.slice(1, user.areas.length)
 
-    // check for presence of valid JWT and if so request user data from backend on. 
+    // check for presence of valid JWT and if so request user data from backend on load. 
     useLayoutEffect(() =>{
     let token = localStorage.getItem('token')
     if(!hasChecked.current && token){
@@ -38,7 +39,7 @@ export const UserPage = () => {
     }
    }) 
 
-
+//display user page elements
     return (
       <div >
           {user.id && <div>

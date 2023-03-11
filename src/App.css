@@ -17,7 +17,7 @@ form input{
 .LoginForm .fill {
   width: 100%;
   flex: 1;
-  margin-top: 20vh;    
+  margin-top: 15vh;    
 }
 .LoginForm .fixed {
   margin-top: 4vh;    

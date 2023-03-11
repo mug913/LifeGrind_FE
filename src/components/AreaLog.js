@@ -14,7 +14,7 @@ export const AreaLog = (props) => {
                         level: props.area.level,
                         last_Update: props.area.created_at}
     //as long as records exist set last_Update to the most recent
-    if (props.area.subareas[0])
+    if ((props.area.subareas) && (props.area.subareas[0]))
     {
             console.log(props.area.subareas[0])
         logRecord.last_Update = props.area.subareas[0].records.slice(-1).updated_at

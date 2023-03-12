@@ -14,8 +14,8 @@ export const UserPage = () => {
   const hasChecked = useRef(false) 
   const {user,dispatch} = useContext(UserContext);
   const {popUpContent} = useContext(PopUpContext);
-  console.log(user.areas.filter((a) => { return a.position == 0}))
   const dayArea =  user.areas.filter((a) => { return a.position == 0}) ?? [{position: 0}]
+  console.log("dayarea = ", dayArea)
   console.log("areas = ",user.areas)
   const activeAreas =  user.areas.slice(1, user.areas.length)
 
@@ -47,7 +47,7 @@ export const UserPage = () => {
           {user.id && <div>
           <h2>Welcome {user.username}<Timekeeper/></h2> 
             <div className="log-area">
-              <DayLog area={dayArea} />
+              <DayLog area={dayArea[0]} />
               {activeAreas.map(area =>(
               <AreaLog area={area} key={area.position}/>
               ))}

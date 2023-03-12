@@ -132,7 +132,7 @@ form input{
 
 
 .area-1 {
-  margin-top: 4vh;    
+  /*margin-top: 4vh;    */
   grid-area: area1; 
   background-color: grey;
   box-shadow: 4px 10px 18px 4px rgba(0, 0, 0, 0.33);

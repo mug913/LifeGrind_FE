@@ -44,6 +44,7 @@ export const PopUp = (props) => {
             document.querySelector(".pop-up").style.display = "none";
         }
     }
+    
 
     /*Record viewing functionality to be added */
         const contentButtons=

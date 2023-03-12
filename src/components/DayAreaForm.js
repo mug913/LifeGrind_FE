@@ -108,8 +108,9 @@ export const DayAreaForm = (props) => {
         e.preventDefault()
         let token = localStorage.getItem('token')
         let options = {name: state.name, details: state.details, detail_1: state.detail_1, detail_2: state.detail_2, detail_3: state.detail_3}
-         const res = await createSubArea(area, options, token)
+        const res = await createSubArea(area, options, token)
         if (res) {
+            console.log(res)
             dispatch({type: 'refresh_day_area_sub', payload: res.data, area_pos: area.position})
             setState({...state, name: ''})
             setShowMenu(!showMenu)

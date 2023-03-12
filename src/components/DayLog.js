@@ -11,6 +11,7 @@ const panelContent = <DayAreaForm  area={props.area} />
 const DayButtonClick = (e) =>{
     e.preventDefault()
     //clear any current open PopUp, perform content switch, reveal PopUp
+    console.log(props.name)
     PopUpLoad(props.area.position, popUpDispatch, panelContent)
 }
 

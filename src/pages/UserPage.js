@@ -8,15 +8,18 @@ import { PopUp } from '../components/PopUp';
 import { Timekeeper} from '../components/Timekeeper';
 import axios from 'axios';
 
+//present User page if logged in.
 export const UserPage = () => {
 
   const hasChecked = useRef(false) 
   const {user,dispatch} = useContext(UserContext);
   const {popUpContent} = useContext(PopUpContext);
-  const dayArea =  user.areas[0] ?? [{position: 0}]
+  const dayArea =  user.areas.filter((a) => { return a.position == 0}) ?? [{position: 0}]
+  console.log("dayarea = ", dayArea)
+  console.log("areas = ",user.areas)
   const activeAreas =  user.areas.slice(1, user.areas.length)
 
-    // check for presence of valid JWT and if so request user data from backend on. 
+    // check for presence of valid JWT and if so request user data from backend on load. 
     useLayoutEffect(() =>{
     let token = localStorage.getItem('token')
     if(!hasChecked.current && token){
@@ -38,13 +41,13 @@ export const UserPage = () => {
     }
    }) 
 
-
+//display user page elements
     return (
       <div >
           {user.id && <div>
           <h2>Welcome {user.username}<Timekeeper/></h2> 
             <div className="log-area">
-              <DayLog area={dayArea} />
+              <DayLog area={dayArea[0]} />
               {activeAreas.map(area =>(
               <AreaLog area={area} key={area.position}/>
               ))}

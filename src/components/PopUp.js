@@ -31,10 +31,10 @@ export const PopUp = (props) => {
     const deleteAreaBtnClick = async (e) =>{
         e.preventDefault()
         let token = localStorage.getItem('token')
-        const res = await deleteArea(props.content.area, token)
+        const res = await deleteArea(props.content, token)
         if (res) {
             console.log(res)
-            dispatch({type: 'delete_area', payload: res.data, area_pos: props.content.area.position})
+            dispatch({type: 'delete_area', payload: res.data, area_pos: props.content.position})
             popUpDispatch({type: 'clear'})
             document.querySelector(".pop-up").style.display = "none";
         }
@@ -75,7 +75,7 @@ export const PopUp = (props) => {
                     `Name: ${props.content.name}\n
                     streak: ${props.content.streak}
                     level: ${props.content.level}\n
-                    last_Update: ${props.content.last_Update}\n`     
+                    last_Update: ${props.content.updated_at}\n`     
                 content = displayContent.split('\n').map(str => <p>{str}</p>)
                 document.querySelector(`.pop-up-records-button`).style.display = "block";
                 document.querySelector(`.pop-up-area-delete-button`).style.display = "block";

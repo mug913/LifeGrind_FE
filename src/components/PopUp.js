@@ -65,6 +65,7 @@ export const PopUp = (props) => {
         if(!!props.content){
             document.querySelector(`.pop-up-records-button`).style.display = "none";
             document.querySelector(`.pop-up-update-button`).style.display = "none";
+            document.querySelector(`.pop-up-area-delete-button`).style.display = "none";
         }
     
         let content = ''
@@ -77,6 +78,7 @@ export const PopUp = (props) => {
                     last_Update: ${props.content.last_Update}\n`     
                 content = displayContent.split('\n').map(str => <p>{str}</p>)
                 document.querySelector(`.pop-up-records-button`).style.display = "block";
+                document.querySelector(`.pop-up-area-delete-button`).style.display = "block";
                 //only allow Area updates once ever 24 hours
                 if(new Date(props.content.last_Update) <= Yesterday()){
                     document.querySelector(`.pop-up-update-button`).style.display = "block";    

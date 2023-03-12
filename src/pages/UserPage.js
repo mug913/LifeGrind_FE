@@ -14,7 +14,9 @@ export const UserPage = () => {
   const hasChecked = useRef(false) 
   const {user,dispatch} = useContext(UserContext);
   const {popUpContent} = useContext(PopUpContext);
-  const dayArea =  user.areas[0] ?? [{position: 0}]
+  console.log(user.areas.filter((a) => { return a.position == 0}))
+  const dayArea =  user.areas.filter((a) => { return a.position == 0}) ?? [{position: 0}]
+  console.log("areas = ",user.areas)
   const activeAreas =  user.areas.slice(1, user.areas.length)
 
     // check for presence of valid JWT and if so request user data from backend on load. 

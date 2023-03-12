@@ -1,6 +1,8 @@
 import React, {useContext} from 'react'
 import { PopUpContext } from '../contexts/PopUpContext';
+import { UserContext } from '../contexts/UserContext'
 import { Yesterday } from './Timekeeper';
+import { deleteArea } from '../actions/AreaActions';
 import { createAreaRecord } from '../actions/RecordActions';
 import { AreaRecordForm } from './AreaRecordForm';
 
@@ -16,17 +18,42 @@ export const PopUpLoad = (area, popUpDispatch, panelContent) =>{
 export const PopUp = (props) => {
 
     const {popUpDispatch} = useContext(PopUpContext);
-    
+    const {dispatch} = useContext(UserContext);
+
+    //close pop up area button
     const closeBtnClick = (e) =>{
         e.preventDefault()
         popUpDispatch({type: 'clear'})
         document.querySelector(".pop-up").style.display = "none";
     }
+
+    //delete current area button
+    const deleteAreaBtnClick = async (e) =>{
+        e.preventDefault()
+        let token = localStorage.getItem('token')
+        const res = await deleteArea(props.content.area, token)
+        if (res) {
+            console.log(res)
+            dispatch({type: 'delete_area', payload: res.data, area_pos: props.content.area.position})
+            popUpDispatch({type: 'clear'})
+            document.querySelector(".pop-up").style.display = "none";
+        }
+        else {
+            console.log(res) 
+            popUpDispatch({type: 'clear'})
+            document.querySelector(".pop-up").style.display = "none";
+        }
+    }
+
     /*Record viewing functionality to be added */
-        const contentButtons=<div className='pop-up-buttons'>
+        const contentButtons=
+        <div className='pop-up-buttons'>
             <AreaRecordForm content={props.content} />
             <div className = 'pop-up-records-button'>
                 <button /*onClick={closeBtnClick}*/> View Records </button>
+            </div>
+            <div className = 'pop-up-area-delete-button'>
+                <button onClick={deleteAreaBtnClick}> Delete Area </button>
             </div>
         </div>
 

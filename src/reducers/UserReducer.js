@@ -1,19 +1,19 @@
+import update from 'immutability-helper'
 import { userInitialState } from "../contexts/UserContext"
 //reducer for handling user state actions.
 export const userReducer = (user,action) => {
     switch(action.type){
       case 'add':
-        console.log(action.payload)
         return action.payload
       case 'rescue':
         return userInitialState
       case 'add_area':
-       return {
-         ...user,
-         ...user.areas,
-           areas: action.payload
-        }
-        case 'refresh_day_area_sub': {
+          const updateUser = update(user, {areas: {$set: action.payload}}) 
+          return updateUser
+      case 'delete_area':
+          const deleteUpdate = update(user, {areas: {$set: action.payload.areas}}) 
+          return deleteUpdate
+      case 'refresh_day_area_sub': {
           const targetAreaIndex = user.areas.findIndex(area => area.position === action.area_pos)
           const newAreas = [...user.areas]
           newAreas[targetAreaIndex].subareas = action.payload
@@ -22,7 +22,7 @@ export const userReducer = (user,action) => {
            areas: newAreas
             }
           }
-        case 'refresh_area' : {
+      case 'refresh_area' : {
           const targetAreaIndex = user.areas.findIndex(area => area.position === action.area_pos)
           const newAreas = [...user.areas]
           newAreas[targetAreaIndex].subareas[0].records = action.payload
@@ -31,8 +31,8 @@ export const userReducer = (user,action) => {
             areas: newAreas
             }
         }
-        default:
-        return user
+      default:
+      return user
     }
 }
 
